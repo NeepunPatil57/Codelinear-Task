@@ -55,7 +55,7 @@ export default function HeroSection() {
                 transform: 'translate(-50%, -50%)',
                 width: 560,
                 height: 560,
-                background: 'radial-gradient(ellipse at center, rgba(0,180,253,0.3) 0%, rgba(0,58,206,0.4) 40%, transparent 70%)',
+                background: 'radial-gradient(circle at center, rgba(0,180,253,0.8) 0%, rgba(0,180,253,0.15) 55%, transparent 75%)',
               }}
             />
             {/* Girl photo — main card */}
