@@ -157,7 +157,7 @@ export default function SolutionsSection() {
 
         {/* Right grid */}
         <div className="flex-1 grid grid-cols-1 sm:grid-cols-2">
-          {solutions.map((s, i) => (
+          {solutions.map((s) => (
             <SolutionCard
               key={s.title}
               {...s}
