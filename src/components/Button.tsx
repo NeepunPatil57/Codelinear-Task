@@ -15,8 +15,8 @@ export default function Button({ children, variant = 'primary', onClick, classNa
         fontFamily: "'Chivo Mono', monospace",
         fontWeight: 400,
         ...(variant === 'primary'
-          ? { background: 'linear-gradient(180deg, #00B4FD 0%, #003ACE 100%)' }
-          : { background: 'transparent', border: '1px solid rgba(255,255,255,0.25)' }),
+          ? { background: 'linear-gradient(90deg, #00B4FD 0%, #003ACE 100%)' }
+          : { background: 'transparent', border: '1px solid rgba(255,255,255,1)' }),
       }}
       onMouseEnter={(e) => {
         if (variant === 'primary') (e.currentTarget as HTMLButtonElement).style.opacity = '0.9';
