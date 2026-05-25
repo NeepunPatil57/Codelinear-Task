@@ -62,22 +62,22 @@ export default function HeroSection() {
             <img
               src="/assets/girl.png"
               alt="Person using banking app"
-              className="absolute rounded-2xl object-cover object-center z-10"
-              style={{ left: 120, top: 30, width: 400, height: 320 }}
+              className="absolute rounded-3xl object-cover object-center z-10"
+              style={{ left: 200, top: 90, width: 400, height: 320 }}
             />
             {/* Dashboard / total card — top right, overlapping photo */}
             <img
               src="/assets/total.png"
               alt="Total balance"
               className="absolute z-20"
-              style={{ right: 0, top: 25, width: 240, filter: 'drop-shadow(0 8px 32px rgba(0,0,0,0.4))' }}
+              style={{ right: 0, top: 85, width: 240, filter: 'drop-shadow(0 8px 32px rgba(0,0,0,0.4))' }}
             />
             {/* Recent activity card — bottom left, extends below photo */}
             <img
               src="/assets/recent.png"
               alt="Recent activity"
               className="absolute z-20"
-              style={{ left: 0, top: 190, width: 270, filter: 'drop-shadow(0 8px 32px rgba(0,0,0,0.4))' }}
+              style={{ left: 80, top: 250, width: 270, filter: 'drop-shadow(0 8px 32px rgba(0,0,0,0.4))' }}
             />
           </div>
         </div>
