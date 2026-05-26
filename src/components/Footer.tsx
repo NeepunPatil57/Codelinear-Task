@@ -43,7 +43,7 @@ const ArrowIcon = () => (
 
 export default function Footer() {
   return (
-    <footer style={{ background: '#07090f', borderTop: '1px solid rgba(255,255,255,0.06)', fontFamily: "'Sora', sans-serif" }}>
+    <footer style={{ background: '#07090f', fontFamily: "'Sora', sans-serif" }}>
       <div className="w-full px-6 md:px-12 lg:px-16 pt-16 md:pt-20 pb-8" style={{ maxWidth: 1400, margin: '0 auto' }}>
 
         {/* Top row — N7 + addresses */}

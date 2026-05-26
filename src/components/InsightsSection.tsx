@@ -313,48 +313,28 @@ export default function InsightsSection() {
         </div>
       </div>
 
-      {/* ── CTA Card ── */}
+      {/* ── CTA ── */}
       <div
-        className="w-full px-6 md:px-12 lg:px-16 pb-16 md:pb-20 lg:pb-24"
-        style={{ maxWidth: 1400, margin: '0 auto' }}
+        className="w-full px-6 md:px-12 lg:px-20 py-16 md:py-20 lg:py-24 flex flex-col lg:flex-row items-center lg:items-center gap-8 text-center lg:text-left"
+        style={{ background: '#07090f' }}
       >
-        <div
-          className="relative overflow-hidden rounded-2xl px-8 md:px-12 lg:px-16 py-12 md:py-16 flex flex-col lg:flex-row items-start lg:items-center gap-8"
-          style={{ background: '#0a1128', border: '1px solid rgba(255,255,255,0.07)' }}
-        >
-          <div
-            className="absolute right-0 top-1/2 select-none pointer-events-none"
-            style={{
-              transform: 'translateY(-50%)',
-              fontSize: 'clamp(120px, 18vw, 220px)',
-              fontWeight: 800,
-              fontFamily: "'Sora', sans-serif",
-              color: 'transparent',
-              WebkitTextStroke: '1.5px rgba(255,255,255,0.06)',
-              letterSpacing: '-4px',
-              lineHeight: 1,
-            }}
+        <div className="flex flex-col gap-4 items-center lg:items-start lg:max-w-[55%]">
+          <h2
+            className="text-white leading-[1.15]"
+            style={{ fontSize: 'clamp(28px, 3.5vw, 48px)', letterSpacing: '-0.5px', fontFamily: "'Archivo', sans-serif", fontWeight: 400 }}
           >
-            CB7
-          </div>
-          <div className="relative z-10 flex flex-col gap-5 lg:max-w-[55%]">
-            <h2
-              className="text-white font-semibold leading-[1.15]"
-              style={{ fontSize: 'clamp(24px, 3.5vw, 44px)', letterSpacing: '-0.5px', fontFamily: "'Sora', sans-serif" }}
-            >
-              Take the full advantage of going paper-less now.
-            </h2>
-            <p
-              className="text-[13px] md:text-[14px] leading-[1.7]"
-              style={{ color: 'rgba(255,255,255,0.45)', fontFamily: "'Archivo', sans-serif", maxWidth: 380 }}
-            >
-              CB7 helps your financial institution improve the client experience, automate and optimize procedures, simplify banking operations
-            </p>
-          </div>
-          <div className="relative z-10 flex gap-4 lg:ml-auto flex-wrap">
-            <Button variant="outline">Contact Us</Button>
-            <Button variant="primary">Request Demo</Button>
-          </div>
+            Take the full advantage of<br />going <span style={{ whiteSpace: 'nowrap' }}>paper-less</span> now.
+          </h2>
+          <p
+            className="text-[13px] md:text-[14px] leading-[1.7]"
+            style={{ color: 'rgba(255,255,255,0.45)', fontFamily: "'Archivo', sans-serif", maxWidth: 420 }}
+          >
+            CB7 helps your financial institution improve the client experience, automate and optimize procedures, simplify banking operations
+          </p>
+        </div>
+        <div className="flex flex-col sm:flex-row gap-4 lg:ml-auto w-full sm:w-auto">
+          <Button variant="outline" className="w-full sm:w-auto">Contact Us</Button>
+          <Button variant="primary" className="w-full sm:w-auto">Request Demo</Button>
         </div>
       </div>
 
