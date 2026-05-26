@@ -48,18 +48,28 @@ const caseStudies = [
 
 export default function InsightsSection() {
   const [caseIdx, setCaseIdx] = useState(0);
+  const [prevIdx, setPrevIdx] = useState<number | null>(null);
+  const [animating, setAnimating] = useState(false);
   const study = caseStudies[caseIdx];
+
+  const navigate = (newIdx: number) => {
+    if (animating || newIdx === caseIdx) return;
+    setPrevIdx(caseIdx);
+    setAnimating(true);
+    setCaseIdx(newIdx);
+    setTimeout(() => { setPrevIdx(null); setAnimating(false); }, 500);
+  };
 
   return (
     <div style={{ background: '#07090f' }}>
 
       {/* ── Insights ── */}
       <div
-        className="w-full px-8 md:px-14 lg:px-20 py-16 md:py-20 lg:py-24 flex flex-col lg:flex-row gap-6 lg:gap-10"
+        className="w-full px-4 sm:px-8 md:px-14 lg:px-20 py-12 md:py-20 lg:py-24 flex flex-col lg:flex-row gap-8 lg:gap-10"
         style={{ maxWidth: '100%', margin: '0 auto' }}
       >
         {/* Left */}
-        <div className="w-full lg:w-1/2 lg:flex-shrink-0 flex flex-col gap-8 justify-start lg:pt-2 relative">
+        <div className="w-full lg:w-1/2 lg:flex-shrink-0 flex flex-col gap-6 justify-start lg:pt-2 relative">
           {/* Blob */}
           <div style={{
             position: 'absolute',
@@ -90,22 +100,22 @@ export default function InsightsSection() {
         <div className="flex-1 flex flex-col gap-8">
           {/* Row 1 — single horizontal card */}
           <div
-            className="flex flex-row rounded-2xl overflow-hidden"
-            style={{ background: '#01141B', border: 'none', minHeight: 300 }}
+            className="flex flex-col sm:flex-row rounded-2xl overflow-hidden"
+            style={{ background: '#01141B', border: 'none' }}
           >
             {/* Image portion */}
-            <div className="flex-shrink-0 p-4" style={{ width: '48%' }}>
-              <div className="w-full h-full rounded-xl overflow-hidden" style={{ minHeight: 220 }}>
-                <img src="/assets/squares.png" alt="" className="w-full h-full object-cover" />
+            <div className="flex-shrink-0 p-3 sm:p-4 w-full sm:w-[50%] flex items-center justify-center sm:block">
+              <div className="rounded-xl overflow-hidden w-[65%] sm:w-full">
+                <img src="/assets/squares.png" alt="" className="w-full object-cover" style={{ aspectRatio: '1/1' }} />
               </div>
             </div>
             {/* Content portion */}
-            <div className="flex flex-col p-6 pl-4 pt-10 flex-1 justify-between">
+            <div className="flex flex-col p-5 pt-8 sm:p-6 sm:pl-4 sm:pt-10 flex-1 justify-between gap-4 items-center sm:items-start text-center sm:text-left">
               <div className="flex flex-col gap-3">
                 <span className="text-[9px] tracking-[0.14em] uppercase" style={{ color: '#2490BB', fontFamily: "'Chivo Mono', monospace" }}>
                   {insightPosts[0].tag}
                 </span>
-                <h3 className="text-white font-semibold text-[22px] leading-snug" style={{ fontFamily: "'Sora', sans-serif" }}>
+                <h3 className="text-white font-semibold leading-snug" style={{ fontSize: 'clamp(16px, 2vw, 22px)', fontFamily: "'Sora', sans-serif" }}>
                   How to transition<br />from a traditional to a<br />digital bank
                 </h3>
                 <p className="text-[12px] flex gap-5" style={{ color: '#64A8C4', fontFamily: "'Archivo', sans-serif" }}>
@@ -123,17 +133,17 @@ export default function InsightsSection() {
           </div>
 
           {/* Row 2 */}
-          <div className="grid grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8">
             {insightPosts.slice(1).map((post, i) => (
               <div
                 key={i}
-                className="rounded-2xl flex flex-col p-6 pt-10"
-                style={{ aspectRatio: '1 / 1', background: '#01141B', border: 'none' }}
+                className="rounded-2xl flex flex-col p-5 pt-10 sm:p-6 sm:pt-10 items-center sm:items-start text-center sm:text-left"
+                style={{ background: '#01141B', border: 'none', minHeight: 320 }}
               >
                 <span className="text-[11px] tracking-[0.14em] uppercase mb-4" style={{ color: '#2490BB', fontFamily: "'Chivo Mono', monospace" }}>
                   {post.tag}
                 </span>
-                <h3 className="text-white font-semibold text-[23px] leading-snug" style={{ fontFamily: "'Sora', sans-serif" }}>
+                <h3 className="text-white font-semibold leading-snug" style={{ fontSize: 'clamp(16px, 2vw, 23px)', fontFamily: "'Sora', sans-serif" }}>
                   How to transition<br />from a traditional to a<br />digital bank
                 </h3>
                 <p className="text-[12px] flex gap-5 mt-3" style={{ color: '#64A8C4', fontFamily: "'Archivo', sans-serif" }}>
@@ -141,7 +151,7 @@ export default function InsightsSection() {
                   <span>{post.date}</span>
                 </p>
                 <button
-                  className="mt-auto w-full text-white text-[9px] tracking-[0.14em] uppercase py-3 transition-all hover:bg-white/10"
+                  className="mt-auto w-full text-white text-[9px] tracking-[0.14em] uppercase py-3 transition-all hover:bg-white/10 mt-6"
                   style={{ border: '1px solid rgba(255,255,255,0.25)', borderRadius: 10, fontFamily: "'Chivo Mono', monospace" }}
                 >
                   Read More
@@ -164,70 +174,108 @@ export default function InsightsSection() {
       </div>
 
       {/* ── Case Studies ── */}
-      <div
-        className="w-full px-6 md:px-12 lg:px-16 py-16 md:py-20"
-        style={{ maxWidth: 1400, margin: '0 auto' }}
-      >
+      <div className="w-full py-16 md:py-20">
         <h2
-          className="text-white font-semibold text-center mb-10"
-          style={{ fontSize: 'clamp(22px, 3vw, 34px)', letterSpacing: '-0.4px', fontFamily: "'Sora', sans-serif" }}
+          className="text-white text-center mb-10"
+          style={{ fontSize: 'clamp(26px, 3vw, 38px)', letterSpacing: '-0.3px', fontFamily: "'Sora', sans-serif", fontWeight: 400 }}
         >
           Our Case Studies
         </h2>
 
-        {/* Featured card */}
-        <div
-          className="flex flex-col md:flex-row rounded-xl overflow-hidden"
-          style={{ border: '1px solid rgba(255,255,255,0.07)', background: '#0d1220' }}
-        >
-          {/* Image */}
-          <XPatternBg className="w-full md:w-[320px] lg:w-[400px] flex-shrink-0" style={{ minHeight: 220 }} />
-
-          {/* Content */}
-          <div className="flex flex-col gap-4 p-6 md:p-8 flex-1 justify-center">
-            <Tag>{study.tag}</Tag>
-            <h3
-              className="text-white font-semibold leading-snug"
-              style={{ fontSize: 'clamp(18px, 2.5vw, 26px)', fontFamily: "'Sora', sans-serif" }}
-            >
-              {study.title}
-            </h3>
-            <div className="flex items-center gap-2">
-              <div className="w-5 h-5 rounded-full" style={{ background: 'linear-gradient(135deg,#003ACE,#00B4FD)' }} />
-              <span className="text-[12px]" style={{ color: 'rgba(255,255,255,0.5)', fontFamily: "'Archivo', sans-serif" }}>
-                {study.company}
-              </span>
-            </div>
-            <div><ReadMoreBtn /></div>
+        {/* Carousel */}
+        <div className="overflow-hidden" style={{ height: 438 }}>
+          <div className="relative h-full">
+            {caseStudies.map((s, i) => {
+              const offset = i - caseIdx;
+              const isActive = offset === 0;
+              const isPrev = offset === -1;
+              const isNext = offset === 1;
+              if (!isActive && !isPrev && !isNext) return null;
+              return (
+                <div
+                  key={i}
+                  className="absolute top-0 bottom-0"
+                  style={{
+                    left: 89,
+                    width: 1015,
+                    transition: 'transform 0.55s cubic-bezier(0.4,0,0.2,1), opacity 0.55s ease',
+                    transform: isActive
+                      ? 'translateX(0) scale(1)'
+                      : isPrev
+                      ? 'translateX(-95%) scale(0.88)'
+                      : 'translateX(95%) scale(0.88)',
+                    opacity: isActive ? 1 : 0.35,
+                    zIndex: isActive ? 10 : 5,
+                    pointerEvents: isActive ? 'auto' : 'none',
+                  }}
+                >
+                  <div
+                    className="flex flex-row overflow-hidden h-full"
+                    style={{ borderRadius: 18, background: '#01141B', border: '1px solid rgba(255,255,255,0.07)' }}
+                  >
+                    <div className="flex-shrink-0 p-4" style={{ width: '40%' }}>
+                      <div className="w-full h-full rounded-xl overflow-hidden">
+                        <img src="/assets/squares.png" alt="" className="w-full h-full object-cover" />
+                      </div>
+                    </div>
+                    <div className="flex flex-col gap-4 p-8 flex-1 justify-center">
+                      <span className="text-[9px] tracking-[0.14em] uppercase" style={{ color: '#2490BB', fontFamily: "'Chivo Mono', monospace" }}>
+                        {s.tag}
+                      </span>
+                      <h3 className="text-white font-semibold leading-snug" style={{ fontSize: 'clamp(20px, 2.5vw, 32px)', fontFamily: "'Sora', sans-serif" }}>
+                        {s.title}
+                      </h3>
+                      <div className="flex items-center gap-2">
+                        <div className="w-7 h-7 rounded-full flex items-center justify-center" style={{ background: 'rgba(255,255,255,0.12)' }}>
+                          <span style={{ fontSize: 13 }}>⚡</span>
+                        </div>
+                        <span className="text-[13px]" style={{ color: 'rgba(255,255,255,0.6)', fontFamily: "'Archivo', sans-serif" }}>{s.company}</span>
+                      </div>
+                      <button
+                        className="w-full text-white text-[9px] tracking-[0.14em] uppercase py-3 transition-all hover:bg-white/10 mt-2"
+                        style={{ border: '1px solid rgba(255,255,255,0.25)', borderRadius: 8, fontFamily: "'Chivo Mono', monospace" }}
+                      >
+                        Read More
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
 
         {/* Navigation */}
-        <div className="flex items-center justify-between mt-6">
-          <div className="flex items-center gap-3">
+        <div className="flex items-center justify-between mt-6 px-8 md:px-14 lg:px-20">
+          <div className="flex-1" />
+          <div className="flex items-center gap-4">
             <button
-              onClick={() => setCaseIdx((caseIdx - 1 + caseStudies.length) % caseStudies.length)}
-              className="w-8 h-8 rounded-full flex items-center justify-center transition-all hover:bg-white/10"
-              style={{ border: '1px solid rgba(255,255,255,0.2)' }}
+              onClick={() => navigate((caseIdx - 1 + caseStudies.length) % caseStudies.length)}
+              className="w-10 h-10 rounded-full flex items-center justify-center transition-all hover:bg-white/10"
+              style={{ border: '1px solid rgba(255,255,255,0.25)' }}
             >
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                 <path d="M9 3L5 7L9 11" stroke="white" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </button>
-            <div className="flex items-center gap-1.5">
+            <div className="flex items-center gap-2">
               {caseStudies.map((_, i) => (
                 <button
                   key={i}
-                  onClick={() => setCaseIdx(i)}
+                  onClick={() => navigate(i)}
                   className="transition-all rounded-full"
-                  style={{ width: i === caseIdx ? 20 : 6, height: 6, background: i === caseIdx ? '#00B4FD' : 'rgba(255,255,255,0.2)' }}
+                  style={{
+                    width: i === caseIdx ? 28 : 8,
+                    height: 8,
+                    background: i === caseIdx ? '#00B4FD' : 'rgba(255,255,255,0.2)',
+                  }}
                 />
               ))}
             </div>
             <button
-              onClick={() => setCaseIdx((caseIdx + 1) % caseStudies.length)}
-              className="w-8 h-8 rounded-full flex items-center justify-center transition-all hover:bg-white/10"
-              style={{ border: '1px solid rgba(255,255,255,0.2)' }}
+              onClick={() => navigate((caseIdx + 1) % caseStudies.length)}
+              className="w-10 h-10 rounded-full flex items-center justify-center transition-all hover:bg-white/10"
+              style={{ border: '1px solid rgba(255,255,255,0.25)' }}
             >
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                 <path d="M5 3L9 7L5 11" stroke="white" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
@@ -235,15 +283,14 @@ export default function InsightsSection() {
             </button>
           </div>
 
-          <button
-            className="flex items-center gap-1.5 text-[10px] tracking-[0.14em] uppercase hover:opacity-70 transition-opacity"
-            style={{ color: '#2490BB', fontFamily: "'Chivo Mono', monospace" }}
-          >
-            View All
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <path d="M2 7H12M8 3L12 7L8 11" stroke="#00B4FD" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </button>
+          <div className="flex-1 flex justify-end">
+            <button
+              className="flex items-center gap-2 text-[10px] tracking-[0.14em] uppercase hover:opacity-70 transition-opacity"
+              style={{ color: '#00B4FD', fontFamily: "'Chivo Mono', monospace" }}
+            >
+              View All →
+            </button>
+          </div>
         </div>
       </div>
 
