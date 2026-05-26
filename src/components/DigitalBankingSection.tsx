@@ -203,39 +203,31 @@ export default function DigitalBankingSection() {
         style={{ maxWidth: 1400, margin: '0 auto' }}
       >
         <div
-          className="relative overflow-hidden rounded-2xl px-8 md:px-12 lg:px-16 py-12 md:py-16 flex flex-col lg:flex-row items-start lg:items-center gap-8"
-          style={{ background: '#0a1128', border: '1px solid rgba(255,255,255,0.07)' }}
+          className="relative overflow-hidden rounded-2xl px-8 md:px-12 lg:px-16 py-14 md:py-20 flex flex-col lg:flex-row items-start lg:items-center gap-8 lg:gap-0"
+          style={{ background: '#060c18', border: '1px solid rgba(0,140,255,0.15)' }}
         >
-          {/* Ghost N7 */}
-          <div
-            className="absolute right-0 top-1/2 select-none pointer-events-none"
-            style={{
-              transform: 'translateY(-50%)',
-              fontSize: 'clamp(120px, 18vw, 220px)',
-              fontWeight: 800,
-              fontFamily: "'Sora', sans-serif",
-              color: 'transparent',
-              WebkitTextStroke: '1.5px rgba(255,255,255,0.06)',
-              letterSpacing: '-4px',
-              lineHeight: 1,
-            }}
-          >
-            N7
-          </div>
-          <div className="relative z-10 flex flex-col gap-5 lg:max-w-[55%]">
+          {/* N7 SVG watermark */}
+          <img
+            src="/N7.svg"
+            alt=""
+            aria-hidden="true"
+            className="absolute select-none pointer-events-none"
+            style={{ top: '50%', right: '-2%', transform: 'translateY(-50%)', height: '100%', width: 'auto', opacity: 0.7 }}
+          />
+          <div className="relative z-10 flex flex-col gap-5 lg:max-w-[50%]">
             <h2
-              className="text-white font-semibold leading-[1.15]"
-              style={{ fontSize: 'clamp(24px, 3.5vw, 44px)', letterSpacing: '-0.5px' }}
+              className="text-white leading-[1.15]"
+              style={{ fontSize: 'clamp(24px, 3.2vw, 42px)', letterSpacing: '-0.5px', fontFamily: "'Archivo', sans-serif", fontWeight: 400 }}
             >
               Take the full advantage of going paper-less now.
             </h2>
-            <p className="text-[13px] md:text-[14px] leading-[1.7]" style={{ color: 'rgba(255,255,255,0.45)', fontFamily: "'Archivo', sans-serif", maxWidth: 380 }}>
-              N7 helps your financial institution improve the client experience, automate and optimize procedures, simplify banking operations
+            <p className="text-[13px] md:text-[14px] leading-[1.7]" style={{ color: 'rgba(255,255,255,0.5)', fontFamily: "'Archivo', sans-serif" }}>
+              N7 helps your financial institution improve the client experience,<br />automate and optimize procedures, simplify banking operations.
             </p>
           </div>
-          <div className="relative z-10 flex gap-4 lg:ml-auto flex-wrap">
-            <Button variant="outline">Contact Us</Button>
-            <Button variant="primary">Request Demo</Button>
+          <div className="relative z-10 flex flex-col lg:flex-row gap-4 lg:ml-auto items-center w-full lg:w-auto">
+            <Button variant="outline" className="w-[240px] lg:w-auto text-center">Contact Us</Button>
+            <Button variant="primary" className="w-[240px] lg:w-auto text-center">Request Demo</Button>
           </div>
         </div>
       </div>
