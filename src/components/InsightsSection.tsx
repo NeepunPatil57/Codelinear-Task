@@ -183,8 +183,27 @@ export default function InsightsSection() {
         </h2>
 
         {/* Carousel */}
-        <div className="overflow-hidden" style={{ height: 438 }}>
+        <div className="overflow-hidden h-[460px] sm:h-[380px] lg:h-[438px]">
           <div className="relative h-full">
+            {/* Stack ghost cards — desktop only */}
+            {[2, 1].map((depth) => (
+              <div
+                key={`stack-${depth}`}
+                className="absolute top-0 bottom-0 pointer-events-none hidden sm:block"
+                style={{
+                  left: '50%',
+                  width: 'min(calc(100vw - 48px), 1015px)',
+                  borderRadius: 18,
+                  background: '#01141B',
+                  border: '1px solid rgba(255,255,255,0.05)',
+                  opacity: 0.4 / depth,
+                  zIndex: depth,
+                  transform: `translateX(calc(-50% - ${depth * 18}px)) translateY(${depth * 10}px) scale(${1 - depth * 0.03})`,
+                  transition: 'transform 0.55s cubic-bezier(0.4,0,0.2,1)',
+                }}
+              />
+            ))}
+
             {caseStudies.map((s, i) => {
               const offset = i - caseIdx;
               const isActive = offset === 0;
@@ -196,43 +215,45 @@ export default function InsightsSection() {
                   key={i}
                   className="absolute top-0 bottom-0"
                   style={{
-                    left: 89,
-                    width: 1015,
+                    left: '50%',
+                    width: 'min(calc(100vw - 32px), 1015px)',
                     transition: 'transform 0.55s cubic-bezier(0.4,0,0.2,1), opacity 0.55s ease',
                     transform: isActive
-                      ? 'translateX(0) scale(1)'
+                      ? 'translateX(-50%) scale(1)'
                       : isPrev
-                      ? 'translateX(-95%) scale(0.88)'
-                      : 'translateX(95%) scale(0.88)',
+                      ? 'translateX(calc(-50% - 105%)) scale(0.88)'
+                      : 'translateX(calc(-50% + 105%)) scale(0.88)',
                     opacity: isActive ? 1 : 0.35,
                     zIndex: isActive ? 10 : 5,
                     pointerEvents: isActive ? 'auto' : 'none',
                   }}
                 >
                   <div
-                    className="flex flex-row overflow-hidden h-full"
+                    className="flex flex-col sm:flex-row h-full overflow-hidden"
                     style={{ borderRadius: 18, background: '#01141B', border: '1px solid rgba(255,255,255,0.07)' }}
                   >
-                    <div className="flex-shrink-0 p-4" style={{ width: '40%' }}>
+                    {/* Image */}
+                    <div className="flex-shrink-0 p-3 sm:p-4 h-44 sm:h-auto sm:w-[42%]">
                       <div className="w-full h-full rounded-xl overflow-hidden">
                         <img src="/assets/squares.png" alt="" className="w-full h-full object-cover" />
                       </div>
                     </div>
-                    <div className="flex flex-col gap-4 p-8 flex-1 justify-center">
+                    {/* Content */}
+                    <div className="flex flex-col gap-3 sm:gap-4 px-5 pb-5 pt-2 sm:p-8 flex-1 justify-center">
                       <span className="text-[9px] tracking-[0.14em] uppercase" style={{ color: '#2490BB', fontFamily: "'Chivo Mono', monospace" }}>
                         {s.tag}
                       </span>
-                      <h3 className="text-white font-semibold leading-snug" style={{ fontSize: 'clamp(20px, 2.5vw, 32px)', fontFamily: "'Sora', sans-serif" }}>
+                      <h3 className="text-white font-semibold leading-snug" style={{ fontSize: 'clamp(17px, 2.5vw, 32px)', fontFamily: "'Sora', sans-serif" }}>
                         {s.title}
                       </h3>
                       <div className="flex items-center gap-2">
-                        <div className="w-7 h-7 rounded-full flex items-center justify-center" style={{ background: 'rgba(255,255,255,0.12)' }}>
-                          <span style={{ fontSize: 13 }}>⚡</span>
+                        <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center" style={{ background: 'rgba(255,255,255,0.12)' }}>
+                          <span style={{ fontSize: 11 }}>⚡</span>
                         </div>
-                        <span className="text-[13px]" style={{ color: 'rgba(255,255,255,0.6)', fontFamily: "'Archivo', sans-serif" }}>{s.company}</span>
+                        <span className="text-[12px] sm:text-[13px]" style={{ color: 'rgba(255,255,255,0.6)', fontFamily: "'Archivo', sans-serif" }}>{s.company}</span>
                       </div>
                       <button
-                        className="w-full text-white text-[9px] tracking-[0.14em] uppercase py-3 transition-all hover:bg-white/10 mt-2"
+                        className="w-full text-white text-[9px] tracking-[0.14em] uppercase py-2.5 sm:py-3 transition-all hover:bg-white/10 mt-1 sm:mt-2"
                         style={{ border: '1px solid rgba(255,255,255,0.25)', borderRadius: 8, fontFamily: "'Chivo Mono', monospace" }}
                       >
                         Read More
@@ -246,17 +267,16 @@ export default function InsightsSection() {
         </div>
 
         {/* Navigation */}
-        <div className="flex items-center justify-between mt-6 px-8 md:px-14 lg:px-20">
+        <div className="flex items-center justify-between mt-5 sm:mt-6 px-4 sm:px-8 md:px-14 lg:px-20">
           <div className="flex-1" />
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3 sm:gap-4">
             <button
               onClick={() => navigate((caseIdx - 1 + caseStudies.length) % caseStudies.length)}
-              className="w-10 h-10 rounded-full flex items-center justify-center transition-all hover:bg-white/10"
-              style={{ border: '1px solid rgba(255,255,255,0.25)' }}
+              className="w-10 h-10 sm:w-14 sm:h-14 rounded-full flex items-center justify-center transition-all hover:bg-[#00B4FD]/10"
+              style={{ border: '1.5px solid #00B4FD' }}
             >
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                <path d="M9 3L5 7L9 11" stroke="white" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
+              <img src="/arrow.svg" width="16" height="17" className="sm:hidden" alt="Previous" />
+              <img src="/arrow.svg" width="22" height="23" className="hidden sm:block" alt="Previous" />
             </button>
             <div className="flex items-center gap-2">
               {caseStudies.map((_, i) => (
@@ -274,12 +294,11 @@ export default function InsightsSection() {
             </div>
             <button
               onClick={() => navigate((caseIdx + 1) % caseStudies.length)}
-              className="w-10 h-10 rounded-full flex items-center justify-center transition-all hover:bg-white/10"
-              style={{ border: '1px solid rgba(255,255,255,0.25)' }}
+              className="w-10 h-10 sm:w-14 sm:h-14 rounded-full flex items-center justify-center transition-all hover:bg-[#00B4FD]/10"
+              style={{ border: '1.5px solid #00B4FD' }}
             >
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                <path d="M5 3L9 7L5 11" stroke="white" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
+              <img src="/arrow.svg" width="16" height="17" className="sm:hidden" alt="Next" style={{ transform: 'rotate(180deg)' }} />
+              <img src="/arrow.svg" width="22" height="23" className="hidden sm:block" alt="Next" style={{ transform: 'rotate(180deg)' }} />
             </button>
           </div>
 
