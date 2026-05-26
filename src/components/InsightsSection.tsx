@@ -1,38 +1,6 @@
 import { useState } from 'react';
 import Button from './Button';
 
-/* ── X Pattern placeholder image ── */
-const XPatternBg = ({ className, style }: { className?: string; style?: React.CSSProperties }) => (
-  <div className={`overflow-hidden ${className || ''}`} style={{ background: '#071828', ...style }}>
-    <svg viewBox="0 0 200 160" fill="none" className="w-full h-full" preserveAspectRatio="xMidYMid slice">
-      {([[50,40],[130,40],[50,120],[130,120]] as [number,number][]).map(([cx,cy], i) => (
-        <g key={i} transform={`translate(${cx},${cy})`}>
-          <path d="M-22,-22 L22,22" stroke="#00AAEE" strokeWidth="7" strokeLinecap="round"/>
-          <path d="M22,-22 L-22,22" stroke="#00AAEE" strokeWidth="7" strokeLinecap="round"/>
-          <path d="M-22,-22 L-22,-13 M-22,-22 L-13,-22" stroke="#00AAEE" strokeWidth="4" strokeLinecap="round"/>
-          <path d="M22,-22 L13,-22 M22,-22 L22,-13" stroke="#00AAEE" strokeWidth="4" strokeLinecap="round"/>
-          <path d="M22,22 L22,13 M22,22 L13,22" stroke="#00AAEE" strokeWidth="4" strokeLinecap="round"/>
-          <path d="M-22,22 L-13,22 M-22,22 L-22,13" stroke="#00AAEE" strokeWidth="4" strokeLinecap="round"/>
-        </g>
-      ))}
-    </svg>
-  </div>
-);
-
-const Tag = ({ children }: { children: React.ReactNode }) => (
-  <span className="text-[9px] tracking-[0.14em] uppercase" style={{ color: 'rgba(255,255,255,0.35)', fontFamily: "'Chivo Mono', monospace" }}>
-    {children}
-  </span>
-);
-
-const ReadMoreBtn = () => (
-  <button
-    className="text-white text-[9px] tracking-[0.14em] uppercase px-4 py-2 transition-all hover:bg-white/10 self-start"
-    style={{ border: '1px solid rgba(255,255,255,0.2)', borderRadius: 6, fontFamily: "'Chivo Mono', monospace" }}
-  >
-    Read More
-  </button>
-);
 
 const insightPosts = [
   { tag: 'Getting Started', title: 'How to transition from a traditional to a digital bank', author: 'David Eady', date: '17/09/24' },
@@ -48,16 +16,13 @@ const caseStudies = [
 
 export default function InsightsSection() {
   const [caseIdx, setCaseIdx] = useState(0);
-  const [prevIdx, setPrevIdx] = useState<number | null>(null);
   const [animating, setAnimating] = useState(false);
-  const study = caseStudies[caseIdx];
 
   const navigate = (newIdx: number) => {
     if (animating || newIdx === caseIdx) return;
-    setPrevIdx(caseIdx);
     setAnimating(true);
     setCaseIdx(newIdx);
-    setTimeout(() => { setPrevIdx(null); setAnimating(false); }, 500);
+    setTimeout(() => { setAnimating(false); }, 500);
   };
 
   return (
