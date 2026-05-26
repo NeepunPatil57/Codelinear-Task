@@ -59,15 +59,27 @@ export default function InsightsSection() {
         style={{ maxWidth: '100%', margin: '0 auto' }}
       >
         {/* Left */}
-        <div className="w-full lg:w-1/2 lg:flex-shrink-0 flex flex-col gap-8 justify-start lg:pt-2">
+        <div className="w-full lg:w-1/2 lg:flex-shrink-0 flex flex-col gap-8 justify-start lg:pt-2 relative">
+          {/* Blob */}
+          <div style={{
+            position: 'absolute',
+            top: '2%',
+            left: '-5%',
+            width: 620,
+            height: 620,
+            background: 'radial-gradient(circle, rgba(0,100,180,0.35) 0%, rgba(0,60,140,0.15) 50%, transparent 75%)',
+            pointerEvents: 'none',
+            filter: 'blur(40px)',
+            zIndex: 0,
+          }} />
           <h2
-            className="text-white leading-[1.15]"
+            className="text-white leading-[1.15] relative z-10"
             style={{ fontSize: 'clamp(26px, 3vw, 38px)', letterSpacing: '-0.3px', fontFamily: "'Archivo', sans-serif", fontWeight: 400 }}
           >
             Get yourself up-to-speed on all<br />the things happening in<br />fintech
           </h2>
           <button
-            className="text-white text-[10px] tracking-[0.16em] uppercase px-8 py-3 transition-all hover:bg-white/5 self-start"
+            className="text-white text-[10px] tracking-[0.16em] uppercase px-8 py-3 transition-all hover:bg-white/5 self-start relative z-10"
             style={{ border: '1px solid rgba(255,255,255,0.4)', borderRadius: 12, fontFamily: "'Chivo Mono', monospace", background: 'transparent', minWidth: 180 }}
           >
             Insights
@@ -84,7 +96,7 @@ export default function InsightsSection() {
             {/* Image portion */}
             <div className="flex-shrink-0 p-4" style={{ width: '48%' }}>
               <div className="w-full h-full rounded-xl overflow-hidden" style={{ minHeight: 220 }}>
-                <XPatternBg className="w-full h-full" style={{ minHeight: 220 }} />
+                <img src="/assets/squares.png" alt="" className="w-full h-full object-cover" />
               </div>
             </div>
             {/* Content portion */}
@@ -141,13 +153,11 @@ export default function InsightsSection() {
           {/* Read all link */}
           <div className="flex justify-end pt-1">
             <button
-              className="flex items-center gap-1.5 text-[10px] tracking-[0.14em] uppercase hover:opacity-70 transition-opacity"
-              style={{ color: '#2490BB', fontFamily: "'Chivo Mono', monospace" }}
+              className="flex items-center gap-2 text-[11px] tracking-[0.14em] uppercase hover:opacity-70 transition-opacity"
+              style={{ color: '#00B4FD', fontFamily: "'Chivo Mono', monospace" }}
             >
-              Read All Insights
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                <path d="M2 7H12M8 3L12 7L8 11" stroke="#00B4FD" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
+              <span style={{ textDecoration: 'underline', textUnderlineOffset: '4px', textDecorationColor: '#00B4FD' }}>Read All</span>
+              <span>Insights →</span>
             </button>
           </div>
         </div>
