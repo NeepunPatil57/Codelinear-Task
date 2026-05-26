@@ -43,8 +43,21 @@ const ArrowIcon = () => (
 
 export default function Footer() {
   return (
-    <footer style={{ background: '#07090f', fontFamily: "'Archivo', sans-serif", overflowX: 'hidden' }}>
-      <div className="w-full px-6 md:px-12 lg:px-16 pt-16 md:pt-20 pb-6" style={{ maxWidth: 1400, margin: '0 auto' }}>
+    <footer style={{ background: '#07090f', fontFamily: "'Archivo', sans-serif", overflowX: 'hidden', position: 'relative' }}>
+      {/* Semicircle glow */}
+      <div style={{
+        position: 'absolute',
+        bottom: 0,
+        left: '50%',
+        transform: 'translateX(-50%)',
+        width: '100%',
+        height: 350,
+        background: 'radial-gradient(ellipse at center bottom, rgba(0,180,253,0.10) 0%, rgba(0,80,200,0.05) 50%, transparent 75%)',
+        pointerEvents: 'none',
+        zIndex: 0,
+      }} />
+
+      <div className="w-full px-6 md:px-12 lg:px-16 pt-16 md:pt-20 pb-6 relative z-10" style={{ maxWidth: 1400, margin: '0 auto' }}>
 
         {/* ── Desktop grid layout (4 columns: N7 | addr1 | addr2 | addr3) ── */}
         <div className="hidden lg:grid gap-x-8 mb-20 items-start" style={{ gridTemplateColumns: '32% 1fr 1fr 1fr' }}>
