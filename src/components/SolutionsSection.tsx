@@ -1,48 +1,29 @@
 import Button from './Button';
 
-const CoreBankingIcon = () => (
-  <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-    <path d="M14 3C14 3 20 6 20 14C20 22 14 25 14 25" stroke="white" strokeWidth="1.3" strokeLinecap="round" strokeOpacity="0.7"/>
-    <path d="M14 3C14 3 8 6 8 14C8 22 14 25 14 25" stroke="white" strokeWidth="1.3" strokeLinecap="round" strokeOpacity="0.7"/>
-    <circle cx="14" cy="14" r="11" stroke="white" strokeWidth="1.3" strokeOpacity="0.7"/>
-    <path d="M3 14H25" stroke="white" strokeWidth="1.3" strokeLinecap="round" strokeOpacity="0.7"/>
-    <path d="M4.5 9H23.5" stroke="white" strokeWidth="1.3" strokeLinecap="round" strokeOpacity="0.7"/>
-    <path d="M4.5 19H23.5" stroke="white" strokeWidth="1.3" strokeLinecap="round" strokeOpacity="0.7"/>
-  </svg>
+const GradientIcon = ({ src, alt }: { src: string; alt: string }) => (
+  <div
+    style={{
+      width: 40,
+      height: 40,
+      background: 'linear-gradient(to right, #FFFFFF, #8B8B8B)',
+      WebkitMaskImage: `url(${src})`,
+      maskImage: `url(${src})`,
+      WebkitMaskSize: 'contain',
+      maskSize: 'contain',
+      WebkitMaskRepeat: 'no-repeat',
+      maskRepeat: 'no-repeat',
+      WebkitMaskPosition: 'center',
+      maskPosition: 'center',
+    }}
+    aria-label={alt}
+  />
 );
 
-const DigitalBankingIcon = () => (
-  <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-    <path d="M14 3V25" stroke="white" strokeWidth="1.3" strokeLinecap="round" strokeOpacity="0.7"/>
-    <path d="M3 14H25" stroke="white" strokeWidth="1.3" strokeLinecap="round" strokeOpacity="0.7"/>
-    <path d="M5.5 5.5L22.5 22.5" stroke="white" strokeWidth="1.3" strokeLinecap="round" strokeOpacity="0.7"/>
-    <path d="M22.5 5.5L5.5 22.5" stroke="white" strokeWidth="1.3" strokeLinecap="round" strokeOpacity="0.7"/>
-  </svg>
-);
-
-const OpenBankingIcon = () => (
-  <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-    <circle cx="10" cy="14" r="7" stroke="white" strokeWidth="1.3" strokeOpacity="0.7"/>
-    <circle cx="18" cy="14" r="7" stroke="white" strokeWidth="1.3" strokeOpacity="0.7"/>
-  </svg>
-);
-
-const LoanOriginationIcon = () => (
-  <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-    <path d="M14 3L25 14L14 25L3 14L14 3Z" stroke="white" strokeWidth="1.3" strokeLinejoin="round" strokeOpacity="0.7"/>
-    <path d="M14 8L20 14L14 20L8 14L14 8Z" stroke="white" strokeWidth="1.3" strokeLinejoin="round" strokeOpacity="0.7"/>
-  </svg>
-);
-
-const LoanManagementIcon = () => (
-  <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-    <path d="M14 3V25" stroke="white" strokeWidth="1.3" strokeLinecap="round" strokeOpacity="0.7"/>
-    <path d="M3 14H25" stroke="white" strokeWidth="1.3" strokeLinecap="round" strokeOpacity="0.7"/>
-    <path d="M5.5 5.5L22.5 22.5" stroke="white" strokeWidth="1.3" strokeLinecap="round" strokeOpacity="0.7"/>
-    <path d="M22.5 5.5L5.5 22.5" stroke="white" strokeWidth="1.3" strokeLinecap="round" strokeOpacity="0.7"/>
-    <circle cx="14" cy="14" r="3" stroke="white" strokeWidth="1.3" strokeOpacity="0.7"/>
-  </svg>
-);
+const CoreBankingIcon = () => <GradientIcon src="/assets/spiral.png" alt="Core Banking" />;
+const DigitalBankingIcon = () => <GradientIcon src="/assets/core-banking.png" alt="Digital Banking" />;
+const OpenBankingIcon = () => <GradientIcon src="/assets/digital-banking.png" alt="Open Banking" />;
+const LoanOriginationIcon = () => <GradientIcon src="/assets/open-banking.png" alt="Loan Origination" />;
+const LoanManagementIcon = () => <GradientIcon src="/assets/loan-origination.png" alt="Loan Management" />;
 
 const solutions = [
   {
@@ -145,14 +126,14 @@ export default function SolutionsSection() {
         style={{ maxWidth: 1400, margin: '0 auto' }}
       >
         {/* Left column */}
-        <div className="w-full lg:w-[320px] lg:flex-shrink-0 flex flex-col gap-8 lg:pr-12 lg:pt-8">
+        <div className="w-full lg:w-[460px] lg:flex-shrink-0 flex flex-col gap-8 lg:pr-8 lg:pt-8">
           <h2
-            className="text-white font-semibold leading-[1.15]"
-            style={{ fontSize: 'clamp(28px, 3.5vw, 40px)', letterSpacing: '-0.5px' }}
+            className="text-white leading-[1.2]"
+            style={{ fontSize: 'clamp(24px, 2.8vw, 32px)', letterSpacing: '-0.5px', fontFamily: "'Archivo', sans-serif", fontWeight: 400 }}
           >
-            All of our solutions are tailor-made to your needs
+            All of our solutions are<br />tailor-made to your needs
           </h2>
-          <Button variant="outline" className="self-start">Request Demo</Button>
+          <Button variant="outline" className="self-start min-w-[190px]">Request Demo</Button>
         </div>
 
         {/* Right grid */}
