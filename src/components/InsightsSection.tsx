@@ -55,79 +55,100 @@ export default function InsightsSection() {
 
       {/* ── Insights ── */}
       <div
-        className="w-full px-6 md:px-12 lg:px-16 py-16 md:py-20 lg:py-24 flex flex-col lg:flex-row gap-10 lg:gap-16"
-        style={{ maxWidth: 1400, margin: '0 auto' }}
+        className="w-full px-8 md:px-14 lg:px-20 py-16 md:py-20 lg:py-24 flex flex-col lg:flex-row gap-6 lg:gap-10"
+        style={{ maxWidth: '100%', margin: '0 auto' }}
       >
         {/* Left */}
-        <div className="w-full lg:w-[280px] lg:flex-shrink-0 flex flex-col gap-6 justify-start lg:pt-2">
+        <div className="w-full lg:w-1/2 lg:flex-shrink-0 flex flex-col gap-8 justify-start lg:pt-2">
           <h2
-            className="text-white font-semibold leading-[1.15]"
-            style={{ fontSize: 'clamp(22px, 3vw, 32px)', letterSpacing: '-0.4px', fontFamily: "'Sora', sans-serif" }}
+            className="text-white leading-[1.15]"
+            style={{ fontSize: 'clamp(26px, 3vw, 38px)', letterSpacing: '-0.3px', fontFamily: "'Archivo', sans-serif", fontWeight: 400 }}
           >
-            Get yourself up-to-speed on all the things happening in fintech
+            Get yourself up-to-speed on all<br />the things happening in<br />fintech
           </h2>
           <button
-            className="text-white text-[10px] tracking-[0.16em] uppercase px-5 py-2.5 transition-all hover:bg-white/5 self-start"
-            style={{ border: '1px solid rgba(255,255,255,0.3)', borderRadius: 8, fontFamily: "'Chivo Mono', monospace" }}
+            className="text-white text-[10px] tracking-[0.16em] uppercase px-8 py-3 transition-all hover:bg-white/5 self-start"
+            style={{ border: '1px solid rgba(255,255,255,0.4)', borderRadius: 12, fontFamily: "'Chivo Mono', monospace", background: 'transparent', minWidth: 180 }}
           >
             Insights
           </button>
         </div>
 
-        {/* Right — cards grid */}
-        <div className="flex-1 flex flex-col sm:flex-row gap-4">
-          {/* Featured large card */}
+        {/* Right — 2×2 grid */}
+        <div className="flex-1 flex flex-col gap-8">
+          {/* Row 1 — single horizontal card */}
           <div
-            className="flex-1 flex flex-col rounded-xl overflow-hidden"
-            style={{ border: '1px solid rgba(255,255,255,0.07)' }}
+            className="flex flex-row rounded-2xl overflow-hidden"
+            style={{ background: '#01141B', border: 'none', minHeight: 300 }}
           >
-            <XPatternBg className="w-full" style={{ height: 180 }} />
-            <div className="flex flex-col gap-3 p-5 flex-1" style={{ background: '#0d1220' }}>
-              <Tag>{insightPosts[0].tag}</Tag>
-              <h3 className="text-white font-semibold text-[15px] leading-snug" style={{ fontFamily: "'Sora', sans-serif" }}>
-                {insightPosts[0].title}
-              </h3>
-              <p className="text-[11px]" style={{ color: 'rgba(255,255,255,0.35)', fontFamily: "'Archivo', sans-serif" }}>
-                {insightPosts[0].author} · {insightPosts[0].date}
-              </p>
-              <div className="mt-auto pt-2"><ReadMoreBtn /></div>
+            {/* Image portion */}
+            <div className="flex-shrink-0 p-4" style={{ width: '48%' }}>
+              <div className="w-full h-full rounded-xl overflow-hidden" style={{ minHeight: 220 }}>
+                <XPatternBg className="w-full h-full" style={{ minHeight: 220 }} />
+              </div>
+            </div>
+            {/* Content portion */}
+            <div className="flex flex-col p-6 pl-4 pt-10 flex-1 justify-between">
+              <div className="flex flex-col gap-3">
+                <span className="text-[9px] tracking-[0.14em] uppercase" style={{ color: '#2490BB', fontFamily: "'Chivo Mono', monospace" }}>
+                  {insightPosts[0].tag}
+                </span>
+                <h3 className="text-white font-semibold text-[22px] leading-snug" style={{ fontFamily: "'Sora', sans-serif" }}>
+                  How to transition<br />from a traditional to a<br />digital bank
+                </h3>
+                <p className="text-[12px] flex gap-5" style={{ color: '#64A8C4', fontFamily: "'Archivo', sans-serif" }}>
+                  <span>{insightPosts[0].author}</span>
+                  <span>{insightPosts[0].date}</span>
+                </p>
+              </div>
+              <button
+                className="w-full text-white text-[9px] tracking-[0.14em] uppercase py-3 transition-all hover:bg-white/10"
+                style={{ border: '1px solid rgba(255,255,255,0.25)', borderRadius: 10, fontFamily: "'Chivo Mono', monospace" }}
+              >
+                Read More
+              </button>
             </div>
           </div>
 
-          {/* Two smaller cards stacked */}
-          <div className="flex-1 flex flex-col gap-4">
+          {/* Row 2 */}
+          <div className="grid grid-cols-2 gap-8">
             {insightPosts.slice(1).map((post, i) => (
               <div
                 key={i}
-                className="flex flex-col sm:flex-row rounded-xl overflow-hidden"
-                style={{ border: '1px solid rgba(255,255,255,0.07)', background: '#0d1220' }}
+                className="rounded-2xl flex flex-col p-6 pt-10"
+                style={{ aspectRatio: '1 / 1', background: '#01141B', border: 'none' }}
               >
-                <XPatternBg style={{ width: '100%', height: 100, flexShrink: 0 }} className="sm:w-28 sm:h-auto" />
-                <div className="flex flex-col gap-2 p-4 flex-1">
-                  <Tag>{post.tag}</Tag>
-                  <h3 className="text-white font-semibold text-[13px] leading-snug" style={{ fontFamily: "'Sora', sans-serif" }}>
-                    {post.title}
-                  </h3>
-                  <p className="text-[10px]" style={{ color: 'rgba(255,255,255,0.35)', fontFamily: "'Archivo', sans-serif" }}>
-                    {post.author} · {post.date}
-                  </p>
-                  <div className="mt-auto pt-1"><ReadMoreBtn /></div>
-                </div>
+                <span className="text-[11px] tracking-[0.14em] uppercase mb-4" style={{ color: '#2490BB', fontFamily: "'Chivo Mono', monospace" }}>
+                  {post.tag}
+                </span>
+                <h3 className="text-white font-semibold text-[23px] leading-snug" style={{ fontFamily: "'Sora', sans-serif" }}>
+                  How to transition<br />from a traditional to a<br />digital bank
+                </h3>
+                <p className="text-[12px] flex gap-5 mt-3" style={{ color: '#64A8C4', fontFamily: "'Archivo', sans-serif" }}>
+                  <span>{post.author}</span>
+                  <span>{post.date}</span>
+                </p>
+                <button
+                  className="mt-auto w-full text-white text-[9px] tracking-[0.14em] uppercase py-3 transition-all hover:bg-white/10"
+                  style={{ border: '1px solid rgba(255,255,255,0.25)', borderRadius: 10, fontFamily: "'Chivo Mono', monospace" }}
+                >
+                  Read More
+                </button>
               </div>
             ))}
+          </div>
 
-            {/* Read all link */}
-            <div className="flex justify-end pt-1">
-              <button
-                className="flex items-center gap-1.5 text-[10px] tracking-[0.14em] uppercase hover:opacity-70 transition-opacity"
-                style={{ color: '#00B4FD', fontFamily: "'Chivo Mono', monospace" }}
-              >
-                Read All Insights
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                  <path d="M2 7H12M8 3L12 7L8 11" stroke="#00B4FD" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </button>
-            </div>
+          {/* Read all link */}
+          <div className="flex justify-end pt-1">
+            <button
+              className="flex items-center gap-1.5 text-[10px] tracking-[0.14em] uppercase hover:opacity-70 transition-opacity"
+              style={{ color: '#2490BB', fontFamily: "'Chivo Mono', monospace" }}
+            >
+              Read All Insights
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M2 7H12M8 3L12 7L8 11" stroke="#00B4FD" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
           </div>
         </div>
       </div>
@@ -206,7 +227,7 @@ export default function InsightsSection() {
 
           <button
             className="flex items-center gap-1.5 text-[10px] tracking-[0.14em] uppercase hover:opacity-70 transition-opacity"
-            style={{ color: '#00B4FD', fontFamily: "'Chivo Mono', monospace" }}
+            style={{ color: '#2490BB', fontFamily: "'Chivo Mono', monospace" }}
           >
             View All
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
