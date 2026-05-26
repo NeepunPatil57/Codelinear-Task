@@ -116,8 +116,8 @@ const CheckIcon = () => (
 
 const LearnMoreLink = () => (
   <button
-    className="flex items-center gap-1.5 text-[10px] tracking-[0.16em] uppercase transition-opacity hover:opacity-70 self-start"
-    style={{ color: '#00B4FD', fontFamily: "'Chivo Mono', monospace" }}
+    className="flex items-center gap-1.5 text-[13px] tracking-[0.16em] uppercase transition-opacity hover:opacity-70 self-start"
+    style={{ color: '#00B4FD', fontFamily: "'Chivo Mono Medium', monospace", fontWeight: 400, textDecoration: 'underline', textUnderlineOffset: '4px', textDecorationColor: '#00B4FD99' }}
   >
     Learn More
     <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -150,18 +150,18 @@ export default function CoreBankingSection() {
         {/* Left */}
         <div className="w-full lg:flex-1 flex flex-col gap-6 text-center lg:text-left items-center lg:items-start">
           <h2
-            className="text-white font-semibold leading-[1.12]"
-            style={{ fontSize: 'clamp(28px, 4vw, 48px)', letterSpacing: '-0.5px', fontFamily: "'Sora', sans-serif" }}
+            className="text-white leading-[1.08]"
+            style={{ fontSize: 'clamp(28px, 3.8vw, 48px)', letterSpacing: '-1px', fontFamily: "'Archivo', sans-serif", fontWeight: 400 }}
           >
             A complete cloud-based<br />core banking.
           </h2>
           <p
             className="text-[13px] md:text-[14px] leading-[1.7]"
-            style={{ color: 'rgba(255,255,255,0.45)', fontFamily: "'Archivo', sans-serif", maxWidth: 340 }}
+            style={{ color: '#E9F4F9', fontFamily: "'Archivo', sans-serif", maxWidth: 380 }}
           >
             Faster time to market with our cloud-based core banking services
           </p>
-          <div className="flex flex-col sm:flex-row items-center lg:items-start gap-4">
+          <div className="flex flex-col items-start gap-4">
             <Button variant="primary">Request Demo</Button>
             <LearnMoreLink />
           </div>

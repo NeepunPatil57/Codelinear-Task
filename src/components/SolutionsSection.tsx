@@ -92,8 +92,8 @@ const SolutionCard = ({
       )}
     </div>
     <h3
-      className="text-white font-semibold text-[17px] md:text-[19px] leading-snug"
-      style={{ fontFamily: "'Sora', sans-serif" }}
+      className="text-white text-[17px] md:text-[19px] leading-snug"
+      style={{ fontFamily: "'Archivo', sans-serif", fontWeight: 400 }}
     >
       {title}
     </h3>
@@ -104,7 +104,7 @@ const SolutionCard = ({
       {description}
     </p>
     <button
-      className="flex items-center gap-1.5 text-[10px] tracking-[0.16em] uppercase transition-opacity hover:opacity-70 self-start"
+      className="flex items-center gap-1.5 text-[13px] tracking-[0.16em] uppercase transition-opacity hover:opacity-70 self-start"
       style={{
         color: '#00B4FD',
         fontFamily: "'Chivo Mono', monospace",
