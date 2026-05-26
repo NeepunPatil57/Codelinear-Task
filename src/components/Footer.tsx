@@ -43,7 +43,7 @@ const ArrowIcon = () => (
 
 export default function Footer() {
   return (
-    <footer style={{ background: '#07090f', fontFamily: "'Archivo', sans-serif" }}>
+    <footer style={{ background: '#07090f', fontFamily: "'Archivo', sans-serif", overflowX: 'hidden' }}>
       <div className="w-full px-6 md:px-12 lg:px-16 pt-16 md:pt-20 pb-6" style={{ maxWidth: 1400, margin: '0 auto' }}>
 
         {/* ── Desktop grid layout (4 columns: N7 | addr1 | addr2 | addr3) ── */}
@@ -95,17 +95,17 @@ export default function Footer() {
         {/* ── Mobile / tablet stacked layout ── */}
         <div className="flex flex-col gap-10 lg:hidden mb-16">
           <img src="/assets/footerimg.png" alt="N7" style={{ width: 'clamp(160px, 40vw, 260px)', height: 'auto' }} />
-          <div className="flex flex-col sm:flex-row gap-8">
+          <div className="flex flex-col gap-8">
             {addresses.map((addr, idx) => (
-              <div key={idx} className="flex-1 flex flex-col gap-2">
+              <div key={idx} className="flex flex-col gap-2">
                 <span className="text-white text-[14px] font-medium" style={{ }}>{addr.city}</span>
                 <p className="text-[12px] leading-[1.7]" style={{ color: 'rgba(255,255,255,0.55)', fontFamily: "'Archivo', sans-serif" }}>{addr.text}</p>
               </div>
             ))}
           </div>
-          <div className="flex flex-col sm:flex-row gap-8">
+          <div className="flex flex-col gap-8">
             {Object.entries(footerLinks).map(([section, links]) => (
-              <div key={section} className="flex-1 flex flex-col gap-1">
+              <div key={section} className="flex flex-col gap-1">
                 <span className="text-white text-[14px] font-medium mb-3" style={{ }}>{section}</span>
                 {links.map((link) => (
                   <button key={link} className="flex items-center justify-between text-[12px] py-1.5 hover:text-white transition-colors text-left" style={{ color: 'rgba(255,255,255,0.65)', fontFamily: "'Archivo', sans-serif" }}>
