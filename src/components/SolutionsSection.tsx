@@ -74,7 +74,7 @@ const SolutionCard = ({
   borderBottom: boolean;
 }) => (
   <div
-    className="flex flex-col gap-4 p-6 md:p-8"
+    className="flex flex-col gap-4 p-6 md:p-8 relative z-10"
     style={{
       borderRight: borderRight ? '1px solid rgba(255,255,255,0.07)' : undefined,
       borderBottom: borderBottom ? '1px solid rgba(255,255,255,0.07)' : undefined,
@@ -105,7 +105,13 @@ const SolutionCard = ({
     </p>
     <button
       className="flex items-center gap-1.5 text-[10px] tracking-[0.16em] uppercase transition-opacity hover:opacity-70 self-start"
-      style={{ color: '#00B4FD', fontFamily: "'Chivo Mono', monospace" }}
+      style={{
+        color: '#00B4FD',
+        fontFamily: "'Chivo Mono', monospace",
+        textDecoration: 'underline',
+        textUnderlineOffset: '4px',
+        textDecorationColor: '#00B4FD99',
+      }}
     >
       Learn More
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -119,25 +125,36 @@ export default function SolutionsSection() {
   return (
     <section
       style={{ background: '#07090f', fontFamily: "'Sora', sans-serif" }}
-      className="w-full"
+      className="w-full overflow-hidden"
     >
       <div
-        className="w-full px-6 md:px-12 lg:px-16 py-16 md:py-20 lg:py-24 flex flex-col lg:flex-row lg:items-start gap-12 lg:gap-0"
+        className="w-full px-6 md:px-12 lg:px-16 py-16 md:py-20 lg:py-24 flex flex-col lg:flex-row lg:items-start gap-12 lg:gap-48"
         style={{ maxWidth: 1400, margin: '0 auto' }}
       >
         {/* Left column */}
-        <div className="w-full lg:w-[460px] lg:flex-shrink-0 flex flex-col gap-8 lg:pr-8 lg:pt-8">
+        <div className="w-full lg:w-[460px] lg:flex-shrink-0 flex flex-col gap-8 lg:pr-8 lg:pt-8 items-center text-center lg:items-start lg:text-left">
           <h2
             className="text-white leading-[1.2]"
             style={{ fontSize: 'clamp(24px, 2.8vw, 32px)', letterSpacing: '-0.5px', fontFamily: "'Archivo', sans-serif", fontWeight: 400 }}
           >
             All of our solutions are<br />tailor-made to your needs
           </h2>
-          <Button variant="outline" className="self-start min-w-[190px]">Request Demo</Button>
+          <Button variant="outline" className="self-center lg:self-start min-w-[190px]">Request Demo</Button>
         </div>
 
         {/* Right grid */}
-        <div className="flex-1 grid grid-cols-1 sm:grid-cols-2">
+        <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 relative">
+          <div style={{
+            position: 'absolute',
+            top: '55%',
+            right: '-250px',
+            transform: 'translateY(-50%)',
+            width: 600,
+            height: 600,
+            background: 'radial-gradient(circle, rgba(0,180,253,0.12) 0%, rgba(0,58,206,0.07) 50%, transparent 75%)',
+            pointerEvents: 'none',
+            zIndex: 0,
+          }} />
           {solutions.map((s) => (
             <SolutionCard
               key={s.title}
