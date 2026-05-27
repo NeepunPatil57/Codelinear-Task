@@ -62,12 +62,21 @@ export default function HeroSection() {
         </div>
 
         {/* Right mockup */}
-        <div className="w-full lg:flex-1 flex justify-center items-center mt-12 lg:mt-0">
-          {/* Outer wrapper scales the fixed-pixel mockup down on smaller screens */}
+        <div className="w-full lg:flex-1 mt-12 lg:mt-0">
+          {/* True-center shell: works even when child is wider than parent */}
+          <div style={{ position: 'relative', width: '100%', height: 460 }}>
           <div
             ref={mockupRef}
-            className="relative cursor-pointer"
-            style={{ width: 680, height: 460, perspective: 1000 }}
+            className="cursor-pointer"
+            style={{
+              position: 'absolute',
+              left: '50%',
+              top: 0,
+              width: 680,
+              height: 460,
+              perspective: 1000,
+              transform: 'translateX(-50%)',
+            }}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
           >
@@ -76,7 +85,7 @@ export default function HeroSection() {
               className="absolute inset-0"
               style={{
                 transform: `scale(var(--mockup-scale, 1)) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
-                transformOrigin: 'center center',
+                transformOrigin: 'top center',
                 transformStyle: 'preserve-3d',
                 transition: tilt.x === 0 && tilt.y === 0
                   ? 'transform 0.6s cubic-bezier(0.23, 1, 0.32, 1)'
@@ -117,6 +126,7 @@ export default function HeroSection() {
                 style={{ left: 80, top: 250, width: 270, filter: 'drop-shadow(0 8px 32px rgba(0,0,0,0.4))', transform: 'translateZ(45px)' }}
               />
             </div>
+          </div>
           </div>
         </div>
       </div>
