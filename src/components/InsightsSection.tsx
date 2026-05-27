@@ -148,7 +148,7 @@ export default function InsightsSection() {
         </h2>
 
         {/* Carousel */}
-        <div className="overflow-hidden h-[460px] sm:h-[380px] lg:h-[438px]">
+        <div className="overflow-hidden h-[460px] sm:h-[323px] lg:h-[370px]">
           <div className="relative h-full">
             {/* Stack ghost cards — desktop only */}
             {[2, 1].map((depth) => (
@@ -198,9 +198,9 @@ export default function InsightsSection() {
                     style={{ borderRadius: 18, background: '#01141B', border: '1px solid rgba(255,255,255,0.07)' }}
                   >
                     {/* Image */}
-                    <div className="flex-shrink-0 p-3 sm:p-4 h-44 sm:h-auto sm:w-[42%]">
+                    <div className="flex-shrink-0 p-3 sm:p-4 h-44 sm:h-full sm:w-[42%]">
                       <div className="w-full h-full rounded-xl overflow-hidden">
-                        <img src="/assets/squares.png" alt="" className="w-full h-full object-cover" />
+                        <img src="/assets/squares.png" alt="" className="w-full h-full object-contain" />
                       </div>
                     </div>
                     {/* Content */}
