@@ -107,7 +107,7 @@ export default function Footer() {
 
         {/* ── Mobile / tablet stacked layout ── */}
         <div className="flex flex-col gap-10 lg:hidden mb-16">
-          <img src="/assets/footerimg.png" alt="N7" style={{ width: 'clamp(160px, 40vw, 260px)', height: 'auto' }} />
+          <img src="/assets/footerimg.png" alt="N7" style={{ width: 'clamp(160px, 40vw, 260px)', height: 'auto', marginLeft: '-12px' }} />
           <div className="flex flex-col gap-8">
             {addresses.map((addr, idx) => (
               <div key={idx} className="flex flex-col gap-2">

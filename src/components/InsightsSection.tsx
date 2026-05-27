@@ -297,9 +297,9 @@ export default function InsightsSection() {
             CB7 helps your financial institution improve the client experience, automate and optimize procedures, simplify banking operations
           </p>
         </div>
-        <div className="flex flex-col sm:flex-row gap-4 lg:ml-auto w-full sm:w-auto">
-          <Button variant="outline" className="w-full sm:w-auto">Contact Us</Button>
-          <Button variant="primary" className="w-full sm:w-auto">Request Demo</Button>
+        <div className="flex flex-col sm:flex-row gap-8 lg:ml-auto w-full sm:w-auto">
+          <Button variant="outline" className="w-[75%] sm:w-auto mx-auto sm:mx-0">Contact Us</Button>
+          <Button variant="primary" className="w-[75%] sm:w-auto mx-auto sm:mx-0">Request Demo</Button>
         </div>
       </div>
 
