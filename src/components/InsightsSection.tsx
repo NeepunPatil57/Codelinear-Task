@@ -129,7 +129,7 @@ export default function InsightsSection() {
               </div>
               <button
                 className="w-full text-white text-[9px] tracking-[0.14em] uppercase py-3 transition-all duration-300 ease-out hover:bg-white/10 hover:scale-105 active:scale-95 active:duration-100 transform-gpu"
-                style={{ border: '1px solid rgba(255,255,255,0.25)', borderRadius: 10, fontFamily: "'Chivo Mono', monospace" }}
+                style={{ border: '1px solid rgba(255,255,255,0.25)', borderRadius: 10, fontFamily: "'Chivo Mono', monospace", color: '#E9F4F980' }}
               >
                 Read More
               </button>
@@ -156,7 +156,7 @@ export default function InsightsSection() {
                 </p>
                 <button
                   className="mt-auto w-full text-white text-[9px] tracking-[0.14em] uppercase py-3 transition-all duration-300 ease-out hover:bg-white/10 hover:scale-105 active:scale-95 active:duration-100 transform-gpu mt-6"
-                  style={{ border: '1px solid rgba(255,255,255,0.25)', borderRadius: 10, fontFamily: "'Chivo Mono', monospace" }}
+                  style={{ border: '1px solid rgba(255,255,255,0.25)', borderRadius: 10, fontFamily: "'Chivo Mono', monospace", color: '#E9F4F980' }}
                 >
                   Read More
                 </button>
