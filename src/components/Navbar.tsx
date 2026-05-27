@@ -77,7 +77,7 @@ export default function Navbar() {
 
           <div className="flex items-center gap-2">
             <button
-              className="text-white text-[12px] md:text-[13px] tracking-[0.16em] uppercase px-6 md:px-9 py-2 md:py-2.5 hover:bg-white/5 transition-all duration-300 ease-out hover:scale-105 active:scale-95 active:duration-100 transform-gpu will-change-transform"
+              className="text-white text-[12px] md:text-[13px] tracking-[0.16em] uppercase px-4 md:px-9 py-1.5 md:py-2.5 hover:bg-white/5 transition-all duration-300 ease-out hover:scale-105 active:scale-95 active:duration-100 transform-gpu will-change-transform"
               style={{ border: '1px solid rgba(255,255,255,0.3)', borderRadius: 8 }}
             >
               Request Demo
