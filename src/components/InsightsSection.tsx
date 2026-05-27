@@ -198,9 +198,9 @@ export default function InsightsSection() {
                     style={{ borderRadius: 18, background: '#01141B', border: '1px solid rgba(255,255,255,0.07)' }}
                   >
                     {/* Image */}
-                    <div className="flex-shrink-0 p-3 sm:p-4 h-44 sm:h-full sm:w-[42%]">
+                    <div className="flex-shrink-0 p-3 sm:p-4 sm:h-full sm:w-[42%] h-[180px] w-full">
                       <div className="w-full h-full rounded-xl overflow-hidden">
-                        <img src="/assets/squares.png" alt="" className="w-full h-full object-contain" />
+                        <img src="/assets/squares.png" alt="" className="w-full h-full object-cover sm:object-contain" />
                       </div>
                     </div>
                     {/* Content */}
