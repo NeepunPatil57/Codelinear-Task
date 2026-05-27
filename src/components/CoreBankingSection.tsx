@@ -156,7 +156,7 @@ export default function CoreBankingSection() {
           </div>
 
           {/* Right buttons */}
-          <div className="relative z-10 flex flex-col lg:flex-row gap-4 lg:ml-auto items-center lg:items-center w-full lg:w-auto">
+          <div className="relative z-10 flex flex-col lg:flex-row gap-8 lg:ml-auto items-center lg:items-center w-full lg:w-auto">
             <Button variant="outline" className="w-[240px] lg:w-auto text-center">Contact Us</Button>
             <Button variant="primary" className="w-[240px] lg:w-auto text-center">Request Demo</Button>
           </div>
