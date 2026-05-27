@@ -64,7 +64,7 @@ export default function CoreBankingSection() {
             src="/assets/laptop.png"
             alt="AML Dashboard on laptop"
             className="h-auto"
-            style={{ width: '160%', maxWidth: 900, marginRight: '-60%' }}
+            style={{ width: '160%', maxWidth: 900, marginRight: '-75%' }}
           />
         </div>
       </div>
@@ -80,7 +80,7 @@ export default function CoreBankingSection() {
             src="/assets/laptop.png"
             alt="Banking Dashboard"
             className="h-auto"
-            style={{ width: '160%', maxWidth: 900, marginLeft: '-60%' }}
+            style={{ width: '160%', maxWidth: 900, marginLeft: '-75%' }}
           />
         </div>
 
