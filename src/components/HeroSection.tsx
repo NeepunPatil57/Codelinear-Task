@@ -1,3 +1,4 @@
+import { useRef, useState } from 'react';
 import Navbar from './Navbar';
 import Button from './Button';
 
@@ -9,6 +10,23 @@ const TrustedLogo = ({ src, name }: { src: string; name: string }) => (
 );
 
 export default function HeroSection() {
+  const mockupRef = useRef<HTMLDivElement>(null);
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+  const isHovering = useRef(false);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = mockupRef.current?.getBoundingClientRect();
+    if (!rect) return;
+    const dx = (e.clientX - (rect.left + rect.width  / 2)) / (rect.width  / 2);
+    const dy = (e.clientY - (rect.top  + rect.height / 2)) / (rect.height / 2);
+    setTilt({ x: dy * -10, y: dx * 10 });
+  };
+
+  const handleMouseLeave = () => {
+    isHovering.current = false;
+    setTilt({ x: 0, y: 0 });
+  };
+
   return (
     <section
       className="relative overflow-hidden"
@@ -47,15 +65,22 @@ export default function HeroSection() {
         <div className="w-full lg:flex-1 flex justify-center items-center mt-12 lg:mt-0">
           {/* Outer wrapper scales the fixed-pixel mockup down on smaller screens */}
           <div
-            className="relative"
-            style={{ width: 680, height: 460 }}
+            ref={mockupRef}
+            className="relative cursor-pointer"
+            style={{ width: 680, height: 460, perspective: 1000 }}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
           >
-            {/* Responsive scale wrapper */}
+            {/* Responsive scale + tilt wrapper */}
             <div
               className="absolute inset-0"
               style={{
-                transform: 'scale(var(--mockup-scale, 1))',
+                transform: `scale(var(--mockup-scale, 1)) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
                 transformOrigin: 'center center',
+                transformStyle: 'preserve-3d',
+                transition: tilt.x === 0 && tilt.y === 0
+                  ? 'transform 0.6s cubic-bezier(0.23, 1, 0.32, 1)'
+                  : 'transform 0.08s linear',
               }}
             >
               {/* Blue glow — behind composite */}
@@ -64,7 +89,7 @@ export default function HeroSection() {
                 style={{
                   top: '55%',
                   left: '55%',
-                  transform: 'translate(-50%, -50%)',
+                  transform: 'translate(-50%, -50%) translateZ(0px)',
                   width: 560,
                   height: 560,
                   background: 'radial-gradient(circle at center, rgba(0,58,206,0.8) 0%, rgba(0,58,206,0.15) 55%, transparent 75%)',
@@ -75,21 +100,21 @@ export default function HeroSection() {
                 src="/assets/girl.png"
                 alt="Person using banking app"
                 className="absolute rounded-3xl object-cover object-center z-10"
-                style={{ left: 200, top: 90, width: 400, height: 320 }}
+                style={{ left: 200, top: 90, width: 400, height: 320, transform: 'translateZ(20px)' }}
               />
               {/* Dashboard card */}
               <img
                 src="/assets/total.png"
                 alt="Total balance"
                 className="absolute z-20"
-                style={{ right: 0, top: 85, width: 240, filter: 'drop-shadow(0 8px 32px rgba(0,0,0,0.4))' }}
+                style={{ right: 0, top: 85, width: 240, filter: 'drop-shadow(0 8px 32px rgba(0,0,0,0.4))', transform: 'translateZ(55px)' }}
               />
               {/* Recent activity card */}
               <img
                 src="/assets/recent.png"
                 alt="Recent activity"
                 className="absolute z-20"
-                style={{ left: 80, top: 250, width: 270, filter: 'drop-shadow(0 8px 32px rgba(0,0,0,0.4))' }}
+                style={{ left: 80, top: 250, width: 270, filter: 'drop-shadow(0 8px 32px rgba(0,0,0,0.4))', transform: 'translateZ(45px)' }}
               />
             </div>
           </div>
