@@ -1,3 +1,4 @@
+import { useRef, useState } from 'react';
 import Button from './Button';
 
 /* ── Ticker ── */
@@ -31,16 +32,45 @@ const Ticker = () => (
 );
 
 /* ── Phone Mockups ── */
-const PhoneMockup = ({ width = 220, height = 450, style }: { width?: number; height?: number; style?: React.CSSProperties }) => (
-  <div className="relative mx-auto" style={{ width, height, ...style }}>
-    <img
-      src="/assets/iPhone.png"
-      alt="Banking app on iPhone"
-      className="w-full h-full object-contain"
-      style={{ filter: 'drop-shadow(0 24px 48px rgba(0,58,206,0.22))' }}
-    />
-  </div>
-);
+const PhoneMockup = ({ width = 220, height = 450, style }: { width?: number; height?: number; style?: React.CSSProperties }) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+
+  const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = ref.current?.getBoundingClientRect();
+    if (!rect) return;
+    const dx = (e.clientX - (rect.left + rect.width  / 2)) / (rect.width  / 2);
+    const dy = (e.clientY - (rect.top  + rect.height / 2)) / (rect.height / 2);
+    setTilt({ x: dy * -12, y: dx * 12 });
+  };
+
+  const onLeave = () => setTilt({ x: 0, y: 0 });
+
+  return (
+    <div
+      ref={ref}
+      className="relative mx-auto cursor-pointer"
+      style={{ width, height, perspective: 800, ...style }}
+      onMouseMove={onMove}
+      onMouseLeave={onLeave}
+    >
+      <img
+        src="/assets/iPhone.png"
+        alt="Banking app on iPhone"
+        className="w-full h-full object-contain"
+        style={{
+          filter: 'drop-shadow(0 24px 48px rgba(0,58,206,0.22))',
+          transform: `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
+          transition: tilt.x === 0 && tilt.y === 0
+            ? 'transform 0.6s cubic-bezier(0.23, 1, 0.32, 1)'
+            : 'transform 0.08s linear',
+          transformStyle: 'preserve-3d',
+          willChange: 'transform',
+        }}
+      />
+    </div>
+  );
+};
 
 /* ── Check bullet ── */
 const CheckItem = ({ text }: { text: string }) => (
@@ -80,7 +110,7 @@ export default function DigitalBankingSection() {
         style={{ top: '45%', left: '43%', transform: 'translate(-50%, -50%)', height: '55%', width: 'auto', opacity: 0.3 }}
       />
       <div
-        className="relative z-10 w-full px-6 md:px-12 lg:px-16 py-16 md:py-20 lg:py-24 grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-8 items-center"
+        className="relative z-10 w-full px-6 md:px-12 lg:px-16 py-12 md:py-16 lg:py-20 grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-4 items-center"
         style={{ maxWidth: 1400, margin: '0 auto' }}
       >
         {/* Left */}
@@ -95,26 +125,21 @@ export default function DigitalBankingSection() {
             N7 helps your financial institution improve the client experience,<br />automate and optimize procedures
           </p>
           <div className="flex flex-col items-start gap-3">
-            <button
-              className="text-white text-[10px] tracking-[0.16em] uppercase px-8 py-4 transition-all"
-              style={{ borderRadius: 10, fontFamily: "'Chivo Mono', monospace", background: 'linear-gradient(90deg,#00B4FD,#003ACE)', minWidth: 190 }}
-            >
-              Request Demo
-            </button>
+            <Button variant="primary">Request Demo</Button>
             <LearnMoreLink />
           </div>
         </div>
 
         {/* Center phone */}
-        <div className="flex justify-center"><PhoneMockup /></div>
+        <div className="flex justify-center" style={{ marginLeft: '-40px', marginTop: '70px' }}><PhoneMockup /></div>
 
         {/* Right features */}
-        <div className="flex flex-col gap-5 text-center lg:text-left items-center lg:items-start">
+        <div className="flex flex-col gap-5 text-center lg:text-left items-center lg:items-start" style={{ marginLeft: '-30px' }}>
           <h3 className="text-[20px] md:text-[22px] leading-[1.2]" style={{ color: '#0f1f3d', fontFamily: "'Archivo', sans-serif", fontWeight: 600 }}>
             Fully compliant with regulatory requirement
           </h3>
           <p className="text-[13px] md:text-[14px] leading-[1.7]" style={{ color: '#64748b', fontFamily: "'Archivo', sans-serif", fontWeight: 400 }}>
-            The governance of risk management with regulations is achieved by our risk management framework that is fully integrated to work with digital bank's operational risk protocols and procedures.
+            The governance of risk management with regulations is achieved by our risk management framework that is fully integrated to work with digital bank's operational-risk protocols and procedures.
           </p>
           <div className="flex flex-col gap-3 text-left mt-4">
             {['Pre-integrated Security System', 'Fully Compliant With Regulatory Requirement', 'Digitally Connected Core'].map(f => (
@@ -135,7 +160,7 @@ export default function DigitalBankingSection() {
         style={{ top: '50%', left: '8%', transform: 'translate(-50%, -50%)', height: '130%', width: 'auto', opacity: 1 }}
       />
       <div
-        className="relative z-10 w-full px-6 md:px-12 lg:px-16 py-16 md:py-20 flex flex-col lg:flex-row gap-10 lg:gap-6 items-center lg:justify-end"
+        className="relative z-10 w-full px-6 md:px-12 lg:px-16 py-16 md:py-20 lg:py-24 flex flex-col lg:flex-row gap-10 lg:gap-16 items-center lg:justify-end"
         style={{ maxWidth: 1400, margin: '0 auto' }}
       >
         {/* Left features */}
@@ -171,14 +196,17 @@ export default function DigitalBankingSection() {
         style={{ top: '90%', right: '5%', transform: 'translateY(-50%)', height: '150%', width: 'auto', opacity: 1 }}
       />
       <div
-        className="relative z-10 w-full px-6 md:px-12 lg:px-16 py-16 md:py-20 flex flex-col lg:flex-row gap-10 lg:gap-6 items-center lg:justify-end lg:pt-52 lg:pr-56"
+        className="relative z-10 w-full px-6 md:px-12 lg:px-16 py-16 md:py-20 lg:py-24 grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-8 items-center"
         style={{ maxWidth: 1400, margin: '0 auto' }}
       >
-        {/* Left phone */}
-        <div className="w-full lg:w-auto flex justify-center"><PhoneMockup /></div>
+        {/* Empty left col — aligns phone with block 1 center phone */}
+        <div className="hidden lg:block" />
+
+        {/* Center phone */}
+        <div className="flex justify-center" style={{ marginLeft: '-40px', marginTop: '70px' }}><PhoneMockup /></div>
 
         {/* Right features */}
-        <div className="w-full lg:w-[340px] lg:flex-shrink-0 flex flex-col gap-5 text-center lg:text-left items-center lg:items-start">
+        <div className="w-full flex flex-col gap-5 text-center lg:text-left items-center lg:items-start">
           <h2
             className="leading-[1.15]"
             style={{ fontSize: 'clamp(22px, 3vw, 34px)', color: '#0f1f3d', letterSpacing: '-0.4px', fontFamily: "'Archivo', sans-serif", fontWeight: 400 }}
