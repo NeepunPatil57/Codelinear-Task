@@ -131,10 +131,10 @@ export default function DigitalBankingSection() {
         </div>
 
         {/* Center phone */}
-        <div className="flex justify-center" style={{ marginLeft: '-40px', marginTop: '70px' }}><PhoneMockup /></div>
+        <div className="flex justify-center lg:-ml-10 lg:mt-[70px]"><PhoneMockup /></div>
 
         {/* Right features */}
-        <div className="flex flex-col gap-5 text-center lg:text-left items-center lg:items-start" style={{ marginLeft: '-30px' }}>
+        <div className="flex flex-col gap-5 text-center lg:text-left items-center lg:items-start lg:-ml-[30px]">
           <h3 className="text-[20px] md:text-[22px] leading-[1.2]" style={{ color: '#0f1f3d', fontFamily: "'Archivo', sans-serif", fontWeight: 600 }}>
             Fully compliant with regulatory requirement
           </h3>
@@ -203,10 +203,10 @@ export default function DigitalBankingSection() {
         <div className="hidden lg:block" />
 
         {/* Center phone */}
-        <div className="flex justify-center" style={{ marginLeft: '-40px', marginTop: '70px' }}><PhoneMockup /></div>
+        <div className="flex justify-center lg:-ml-10 lg:mt-[70px]"><PhoneMockup /></div>
 
         {/* Right features */}
-        <div className="w-full flex flex-col gap-5 text-center lg:text-left items-center lg:items-start" style={{ marginLeft: '-40px', marginTop: '90px' }}>
+        <div className="w-full flex flex-col gap-5 text-center lg:text-left items-center lg:items-start lg:-ml-10 lg:mt-[90px]">
           <h2
             className="leading-[1.15]"
             style={{ fontSize: 'clamp(22px, 3vw, 34px)', color: '#0f1f3d', letterSpacing: '-0.4px', fontFamily: "'Archivo', sans-serif", fontWeight: 400 }}
