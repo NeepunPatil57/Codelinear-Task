@@ -48,13 +48,13 @@ export default function InsightsSection() {
             zIndex: 0,
           }} />
           <h2
-            className="text-white leading-[1.15] relative z-10"
+            className="text-white leading-[1.15] relative z-10 text-center lg:text-left"
             style={{ fontSize: 'clamp(26px, 3vw, 38px)', letterSpacing: '-0.3px', fontFamily: "'Archivo', sans-serif", fontWeight: 400 }}
           >
             Get yourself up-to-speed on all<br />the things happening in<br />fintech
           </h2>
           <button
-            className="text-white text-[10px] tracking-[0.16em] uppercase px-8 py-3 transition-all hover:bg-white/5 self-start relative z-10"
+            className="text-white text-[10px] tracking-[0.16em] uppercase px-8 py-3 transition-all duration-300 ease-out hover:bg-white/5 hover:scale-105 active:scale-95 active:duration-100 transform-gpu will-change-transform self-center lg:self-start relative z-10"
             style={{ border: '1px solid rgba(255,255,255,0.4)', borderRadius: 12, fontFamily: "'Chivo Mono', monospace", background: 'transparent', minWidth: 180 }}
           >
             Insights
@@ -62,10 +62,10 @@ export default function InsightsSection() {
         </div>
 
         {/* Right — 2×2 grid */}
-        <div className="flex-1 flex flex-col gap-8">
+        <div className="flex-1 flex flex-col gap-4 sm:gap-8">
           {/* Row 1 — single horizontal card */}
           <div
-            className="flex flex-col sm:flex-row rounded-2xl overflow-hidden"
+            className="flex flex-col sm:flex-row rounded-2xl overflow-hidden transition-all duration-300 ease-out hover:scale-[1.02] hover:-translate-y-2 cursor-pointer hover:ring-1 hover:ring-[#2490BB]/40 hover:shadow-[0_12px_40px_rgba(0,180,253,0.14)]"
             style={{ background: '#01141B', border: 'none' }}
           >
             {/* Image portion */}
@@ -89,7 +89,7 @@ export default function InsightsSection() {
                 </p>
               </div>
               <button
-                className="w-full text-white text-[9px] tracking-[0.14em] uppercase py-3 transition-all hover:bg-white/10"
+                className="w-full text-white text-[9px] tracking-[0.14em] uppercase py-3 transition-all duration-300 ease-out hover:bg-white/10 hover:scale-105 active:scale-95 active:duration-100 transform-gpu"
                 style={{ border: '1px solid rgba(255,255,255,0.25)', borderRadius: 10, fontFamily: "'Chivo Mono', monospace" }}
               >
                 Read More
@@ -102,8 +102,8 @@ export default function InsightsSection() {
             {insightPosts.slice(1).map((post, i) => (
               <div
                 key={i}
-                className="rounded-2xl flex flex-col p-5 pt-10 sm:p-6 sm:pt-10 items-center sm:items-start text-center sm:text-left"
-                style={{ background: '#01141B', border: 'none', minHeight: 320 }}
+                className="rounded-2xl flex flex-col p-5 pt-10 sm:p-6 sm:pt-10 items-center sm:items-start text-center sm:text-left transition-all duration-300 ease-out hover:scale-[1.02] hover:-translate-y-2 cursor-pointer hover:ring-1 hover:ring-[#2490BB]/40 hover:shadow-[0_12px_40px_rgba(0,180,253,0.14)] min-h-[260px] sm:min-h-[320px]"
+                style={{ background: '#01141B', border: 'none' }}
               >
                 <span className="text-[11px] tracking-[0.14em] uppercase mb-4" style={{ color: '#2490BB', fontFamily: "'Chivo Mono', monospace" }}>
                   {post.tag}
@@ -116,7 +116,7 @@ export default function InsightsSection() {
                   <span>{post.date}</span>
                 </p>
                 <button
-                  className="mt-auto w-full text-white text-[9px] tracking-[0.14em] uppercase py-3 transition-all hover:bg-white/10 mt-6"
+                  className="mt-auto w-full text-white text-[9px] tracking-[0.14em] uppercase py-3 transition-all duration-300 ease-out hover:bg-white/10 hover:scale-105 active:scale-95 active:duration-100 transform-gpu mt-6"
                   style={{ border: '1px solid rgba(255,255,255,0.25)', borderRadius: 10, fontFamily: "'Chivo Mono', monospace" }}
                 >
                   Read More
