@@ -9,9 +9,9 @@ export default function Button({ children, variant = 'primary', onClick, classNa
   return (
     <button
       onClick={onClick}
-      className={`text-white text-[10px] md:text-[11px] tracking-[0.16em] uppercase px-8 py-4 md:px-12 md:py-5 transition-all ${className}`}
+      className={`text-white text-[10px] md:text-[11px] tracking-[0.16em] uppercase px-8 py-4 md:px-14 md:py-4 transition-all duration-300 ease-out active:scale-95 active:duration-100 hover:scale-105 transform-gpu will-change-transform ${className}`}
       style={{
-        borderRadius: 16,
+        borderRadius: 8,
         fontFamily: "'Chivo Mono', monospace",
         fontWeight: 400,
         ...(variant === 'primary'

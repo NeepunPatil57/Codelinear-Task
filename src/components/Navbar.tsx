@@ -1,8 +1,15 @@
 import { useState, useRef, useEffect } from 'react';
 
 const NavChevron = () => (
-  <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-    <path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g clipPath="url(#clip0_24_4415)">
+      <path d="M0.797005 3.83057L6.86396 9.89752L12.9309 3.83057" stroke="#E9F4F9" strokeWidth="1.144" strokeLinecap="round" strokeLinejoin="round"/>
+    </g>
+    <defs>
+      <clipPath id="clip0_24_4415">
+        <rect width="13.728" height="13.728" fill="white" transform="translate(6.00068e-07 13.728) rotate(-90)"/>
+      </clipPath>
+    </defs>
   </svg>
 );
 
@@ -38,16 +45,17 @@ export default function Navbar() {
   }, []);
 
   return (
-    <div className="relative z-10 flex justify-center pt-5 pb-0 px-4 md:px-8">
+    <div className="relative z-10 flex justify-center pt-7 pb-0 px-4 md:px-8">
       <div className="w-full max-w-[900px]" ref={ref}>
         <nav
-          className="flex items-center justify-between w-full px-3 py-2 md:py-3 rounded-[14px] border border-white/[0.07] font-normal"
+          className="flex items-center justify-between w-full px-3 py-1 md:py-3 rounded-[14px] font-normal"
           style={{
             background: 'rgba(47,47,47,0.698)',
             fontFamily: "'Chivo Mono', monospace",
+            fontWeight: 400,
           }}
         >
-          <span className="text-white font-bold text-[18px] tracking-normal select-none">
+          <span className="text-white font-bold text-[24px] tracking-normal select-none">
             N7
           </span>
 
@@ -56,20 +64,20 @@ export default function Navbar() {
             {['Solutions', 'Resources'].map((item) => (
               <button
                 key={item}
-                className="text-white text-[11px] tracking-[0.16em] uppercase flex items-center gap-1.5 hover:text-white/70 transition-colors"
+                className="text-white text-[13px] tracking-[0.16em] uppercase flex items-center gap-1.5 hover:text-white/70 transition-colors"
               >
                 {item}
                 <NavChevron />
               </button>
             ))}
-            <button className="text-white text-[11px] tracking-[0.16em] uppercase hover:text-white/70 transition-colors">
+            <button className="text-white text-[13px] tracking-[0.16em] uppercase hover:text-white/70 transition-colors">
               About Us
             </button>
           </div>
 
           <div className="flex items-center gap-2">
             <button
-              className="text-white text-[10px] md:text-[11px] tracking-[0.16em] uppercase px-4 md:px-6 py-2 md:py-2.5 hover:bg-white/5 transition-all"
+              className="text-white text-[12px] md:text-[13px] tracking-[0.16em] uppercase px-6 md:px-9 py-2 md:py-2.5 hover:bg-white/5 transition-all duration-300 ease-out hover:scale-105 active:scale-95 active:duration-100 transform-gpu will-change-transform"
               style={{ border: '1px solid rgba(255,255,255,0.3)', borderRadius: 8 }}
             >
               Request Demo
