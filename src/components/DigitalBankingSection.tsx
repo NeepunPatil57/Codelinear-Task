@@ -206,7 +206,7 @@ export default function DigitalBankingSection() {
         <div className="flex justify-center" style={{ marginLeft: '-40px', marginTop: '70px' }}><PhoneMockup /></div>
 
         {/* Right features */}
-        <div className="w-full flex flex-col gap-5 text-center lg:text-left items-center lg:items-start">
+        <div className="w-full flex flex-col gap-5 text-center lg:text-left items-center lg:items-start" style={{ marginLeft: '-40px', marginTop: '90px' }}>
           <h2
             className="leading-[1.15]"
             style={{ fontSize: 'clamp(22px, 3vw, 34px)', color: '#0f1f3d', letterSpacing: '-0.4px', fontFamily: "'Archivo', sans-serif", fontWeight: 400 }}
