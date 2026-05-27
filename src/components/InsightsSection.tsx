@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Button from './Button';
 
 
@@ -9,21 +9,59 @@ const insightPosts = [
 ];
 
 const caseStudies = [
-  { tag: 'Getting Started', title: 'How we help brand\nreach out to\nmore people', company: 'Zoomerr' },
-  { tag: 'Getting Started', title: 'How we helped\na fintech startup\nscale operations', company: 'Shells' },
-  { tag: 'Case Study', title: 'Digital\ntransformation for\nmodern banking', company: 'SmartFinder' },
-  { tag: 'Case Study', title: 'Redefining\ncustomer experience\nin fintech', company: 'Zoomerr' },
+  { tag: 'Getting Started', title: 'How we help brand\n reach out to\n more people', company: 'Zoomerr' },
+  { tag: 'Getting Started', title: 'How we helped\na fintech startup\n scale operations', company: 'Shells' },
+  { tag: 'Case Study', title: 'Digital\n transformation for\n modern banking', company: 'SmartFinder' },
+  { tag: 'Case Study', title: 'Redefining\n customer experience\n in fintech', company: 'Zoomerr' },
 ];
 
 export default function InsightsSection() {
   const [caseIdx, setCaseIdx] = useState(0);
   const [animating, setAnimating] = useState(false);
+  const [exitIdx, setExitIdx] = useState<number | null>(null);
+  const [direction, setDirection] = useState<'next' | 'prev'>('next');
+
+  const autoRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const pausedRef = useRef(false);
+  const caseIdxRef = useRef(0);
+
+  const advanceSlide = () => {
+    caseIdxRef.current = (caseIdxRef.current + 1) % caseStudies.length;
+    const next = caseIdxRef.current;
+    setDirection('next');
+    setExitIdx(prev => { return prev; }); // capture current before update
+    setCaseIdx(cur => {
+      setExitIdx(cur);
+      return next;
+    });
+    setAnimating(true);
+    setTimeout(() => { setExitIdx(null); setAnimating(false); }, 750);
+  };
+
+  const resetAuto = () => {
+    if (autoRef.current) clearInterval(autoRef.current);
+    autoRef.current = setInterval(() => {
+      if (pausedRef.current) return;
+      advanceSlide();
+    }, 1500);
+  };
+
+  useEffect(() => {
+    resetAuto();
+    return () => { if (autoRef.current) clearInterval(autoRef.current); };
+  }, []);
 
   const navigate = (newIdx: number) => {
     if (animating || newIdx === caseIdx) return;
+    const n = caseStudies.length;
+    const isNext = (newIdx - caseIdx + n) % n <= n / 2;
+    setDirection(isNext ? 'next' : 'prev');
+    setExitIdx(caseIdx);
     setAnimating(true);
     setCaseIdx(newIdx);
-    setTimeout(() => { setAnimating(false); }, 500);
+    caseIdxRef.current = newIdx;
+    setTimeout(() => { setExitIdx(null); setAnimating(false); }, 750);
+    resetAuto();
   };
 
   return (
@@ -151,31 +189,40 @@ export default function InsightsSection() {
         {/* Carousel */}
         <div className="overflow-hidden h-[460px] sm:h-[323px] lg:h-[370px]">
           <div className="relative h-full">
-            {/* Stack ghost cards — desktop only */}
-            {[2, 1].map((depth) => (
-              <div
-                key={`stack-${depth}`}
-                className="absolute top-0 bottom-0 pointer-events-none hidden sm:block"
-                style={{
-                  left: '50%',
-                  width: 'min(calc(100vw - 48px), 940px)',
-                  borderRadius: 18,
-                  background: '#01141B',
-                  border: '1px solid rgba(255,255,255,0.05)',
-                  opacity: 0.4 / depth,
-                  zIndex: depth,
-                  transform: `translateX(calc(-50% - ${depth * 18}px)) translateY(${depth * 10}px) scale(${1 - depth * 0.03})`,
-                  transition: 'transform 0.55s cubic-bezier(0.4,0,0.2,1)',
-                }}
-              />
-            ))}
-
             {caseStudies.map((s, i) => {
-              const offset = i - caseIdx;
-              const isActive = offset === 0;
-              const isPrev = offset === -1;
-              const isNext = offset === 1;
-              if (!isActive && !isPrev && !isNext) return null;
+              const n = caseStudies.length;
+              const isActive = i === caseIdx;
+              const isExiting = i === exitIdx;
+              const stackPos = (i - caseIdx + n) % n; // 0=active,1=behind1,2=behind2,...
+
+              if (!isActive && !isExiting && stackPos > 2) return null;
+
+              let transform = '';
+              let opacity = 0;
+              let zIndex = 0;
+              let pointerEvents: 'auto' | 'none' = 'none';
+
+              if (isExiting) {
+                const flyX = direction === 'next' ? '-140%' : '140%';
+                const rot = direction === 'next' ? '-12deg' : '12deg';
+                transform = `translateX(calc(-50% + ${flyX})) rotate(${rot}) scale(0.85)`;
+                opacity = 0;
+                zIndex = 8;
+              } else if (isActive) {
+                transform = 'translateX(-50%) translateY(0px) scale(1) rotate(0deg)';
+                opacity = 1;
+                zIndex = 10;
+                pointerEvents = 'auto';
+              } else if (stackPos === 1) {
+                transform = 'translateX(calc(-50% - 7%)) scale(0.95)';
+                opacity = 0.45;
+                zIndex = 6;
+              } else if (stackPos === 2) {
+                transform = 'translateX(calc(-50% - 13%)) scale(0.90)';
+                opacity = 0.22;
+                zIndex = 4;
+              }
+
               return (
                 <div
                   key={i}
@@ -183,16 +230,16 @@ export default function InsightsSection() {
                   style={{
                     left: '50%',
                     width: 'min(calc(100vw - 32px), 940px)',
-                    transition: 'transform 0.55s cubic-bezier(0.4,0,0.2,1), opacity 0.55s ease',
-                    transform: isActive
-                      ? 'translateX(-50%) scale(1)'
-                      : isPrev
-                      ? 'translateX(calc(-50% - 105%)) scale(0.88)'
-                      : 'translateX(calc(-50% + 105%)) scale(0.88)',
-                    opacity: isActive ? 1 : 0.35,
-                    zIndex: isActive ? 10 : 5,
-                    pointerEvents: isActive ? 'auto' : 'none',
+                    transition: isExiting
+                      ? 'transform 0.75s cubic-bezier(0.4,0,1,1), opacity 0.7s ease'
+                      : 'transform 0.7s cubic-bezier(0.22,1,0.36,1), opacity 0.7s ease',
+                    transform,
+                    opacity,
+                    zIndex,
+                    pointerEvents,
                   }}
+                  onMouseEnter={isActive ? () => { pausedRef.current = true; } : undefined}
+                  onMouseLeave={isActive ? () => { pausedRef.current = false; advanceSlide(); resetAuto(); } : undefined}
                 >
                   <div
                     className="flex flex-col sm:flex-row h-full overflow-hidden"
