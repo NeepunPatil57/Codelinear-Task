@@ -12,6 +12,7 @@ const caseStudies = [
   { tag: 'Getting Started', title: 'How we help brand\nreach out to\nmore people', company: 'Zoomerr' },
   { tag: 'Getting Started', title: 'How we helped\na fintech startup\nscale operations', company: 'Shells' },
   { tag: 'Case Study', title: 'Digital\ntransformation for\nmodern banking', company: 'SmartFinder' },
+  { tag: 'Case Study', title: 'Redefining\ncustomer experience\nin fintech', company: 'Zoomerr' },
 ];
 
 export default function InsightsSection() {
@@ -269,9 +270,10 @@ export default function InsightsSection() {
                   onClick={() => navigate(i)}
                   className="transition-all rounded-full"
                   style={{
-                    width: i === caseIdx ? 28 : 8,
-                    height: 8,
-                    background: i === caseIdx ? '#00B4FD' : 'rgba(255,255,255,0.2)',
+                    width: i === caseIdx ? 32 : 10,
+                    height: 10,
+                    background: 'transparent',
+                    border: `1.5px solid ${i === caseIdx ? '#00B4FD' : 'rgba(0,180,253,0.35)'}`,
                   }}
                 />
               ))}
