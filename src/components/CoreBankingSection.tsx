@@ -123,6 +123,19 @@ export default function CoreBankingSection() {
           className="relative overflow-hidden rounded-2xl px-8 md:px-12 lg:px-16 py-14 md:py-20 flex flex-col lg:flex-row items-start lg:items-center gap-8 lg:gap-0"
           style={{ background: '#060c18', border: '1px solid rgba(0,140,255,0.15)' }}
         >
+          {/* Left glow */}
+          <div style={{
+            position: 'absolute',
+            top: '50%',
+            left: '-5%',
+            transform: 'translateY(-50%)',
+            width: 380,
+            height: 380,
+            background: 'radial-gradient(circle, rgba(0,180,253,0.18) 0%, rgba(0,58,206,0.08) 50%, transparent 75%)',
+            pointerEvents: 'none',
+            filter: 'blur(30px)',
+          }} />
+
           {/* Ghost "CB7" SVG */}
           <img
             src="/CB7.svg"
@@ -145,7 +158,7 @@ export default function CoreBankingSection() {
               className="text-white leading-[1.15]"
               style={{ fontSize: 'clamp(24px, 3.2vw, 42px)', letterSpacing: '-0.5px', fontFamily: "'Archivo', sans-serif", fontWeight: 400 }}
             >
-              Take the full advantage of going paper-less now.
+              Take the qqsfull advantage of going paper-less now.
             </h2>
             <p
               className="text-[13px] md:text-[14px] leading-[1.7]"
