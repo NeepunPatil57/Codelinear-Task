@@ -11,13 +11,22 @@ const TickerStar = () => (
 const tickerItems = ['N7', 'Say 👋 to the new way of banking', 'CB7', 'Say 👋 to the new way of banking'];
 
 const Ticker = () => (
-  <div className="w-full overflow-hidden py-3" style={{ background: '#dde8f5', borderBottom: '1px solid rgba(0,0,0,0.06)' }}>
+  <div className="w-full overflow-hidden py-3" style={{ background: '#ffffff', borderBottom: '1px solid rgba(0,0,0,0.06)' }}>
     <div className="flex gap-6 animate-ticker whitespace-nowrap" style={{ width: 'max-content' }}>
       {[...Array(4)].flatMap(() =>
         tickerItems.map((item, i) => (
           <span key={`${item}-${i}-${Math.random()}`} className="flex items-center gap-3">
             <TickerStar />
-            <span className="text-[14px] tracking-[0.14em] uppercase font-medium" style={{ color: '#1a2a4a', fontFamily: "'Chivo Mono', monospace" }}>
+            <span
+              className="text-[20px] tracking-[0.14em] uppercase"
+              style={{
+                fontFamily: "'Archivo', sans-serif",
+                fontWeight: 600,
+                ...(item === 'CB7' || item === 'N7'
+                  ? { background: 'linear-gradient(135deg, #00B4FD, #003ACE)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }
+                  : { color: '#000000' }),
+              }}
+            >
               {item}
             </span>
           </span>
@@ -32,7 +41,7 @@ const Ticker = () => (
 );
 
 /* ── Phone Mockups ── */
-const PhoneMockup = ({ width = 220, height = 450, style }: { width?: number; height?: number; style?: React.CSSProperties }) => {
+const PhoneMockup = ({ width = 220, height = 450, style, src = '/assets/iPhone.png' }: { width?: number; height?: number; style?: React.CSSProperties; src?: string }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
 
@@ -55,7 +64,7 @@ const PhoneMockup = ({ width = 220, height = 450, style }: { width?: number; hei
       onMouseLeave={onLeave}
     >
       <img
-        src="/assets/iPhone.png"
+        src={src}
         alt="Banking app on iPhone"
         className="w-full h-full object-contain"
         style={{
@@ -182,7 +191,7 @@ export default function DigitalBankingSection() {
         </div>
 
         {/* Right phone */}
-        <div className="w-full lg:w-auto flex justify-center order-1 lg:order-2"><PhoneMockup /></div>
+        <div className="w-full lg:w-auto flex justify-center order-1 lg:order-2"><PhoneMockup src="/assets/dollarphone.png" /></div>
       </div>
       </div>
 
@@ -203,7 +212,7 @@ export default function DigitalBankingSection() {
         <div className="hidden lg:block" />
 
         {/* Center phone */}
-        <div className="flex justify-center lg:-ml-10 lg:mt-[70px]"><PhoneMockup /></div>
+        <div className="flex justify-center lg:-ml-10 lg:mt-[70px]"><PhoneMockup src="/assets/pfpphone.png" /></div>
 
         {/* Right features */}
         <div className="w-full flex flex-col gap-5 text-center lg:text-left items-center lg:items-start lg:-ml-10 lg:mt-[90px]">
