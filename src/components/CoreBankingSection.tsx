@@ -158,7 +158,7 @@ export default function CoreBankingSection() {
               className="text-white leading-[1.15]"
               style={{ fontSize: 'clamp(24px, 3.2vw, 42px)', letterSpacing: '-0.5px', fontFamily: "'Archivo', sans-serif", fontWeight: 400 }}
             >
-              Take the qqsfull advantage of going paper-less now.
+              Take the full advantage of going paper-less now.
             </h2>
             <p
               className="text-[13px] md:text-[14px] leading-[1.7]"
