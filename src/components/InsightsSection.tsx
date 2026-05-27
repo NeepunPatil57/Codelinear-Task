@@ -9,9 +9,9 @@ const insightPosts = [
 ];
 
 const caseStudies = [
-  { tag: 'Getting Started', title: 'How we help brand reach out to more people', company: 'Zoomerr' },
-  { tag: 'Getting Started', title: 'How we helped a fintech startup scale operations', company: 'Shells' },
-  { tag: 'Case Study', title: 'Digital transformation for modern banking', company: 'SmartFinder' },
+  { tag: 'Getting Started', title: 'How we help brand\nreach out to\nmore people', company: 'Zoomerr' },
+  { tag: 'Getting Started', title: 'How we helped\na fintech startup\nscale operations', company: 'Shells' },
+  { tag: 'Case Study', title: 'Digital\ntransformation for\nmodern banking', company: 'SmartFinder' },
 ];
 
 export default function InsightsSection() {
@@ -157,7 +157,7 @@ export default function InsightsSection() {
                 className="absolute top-0 bottom-0 pointer-events-none hidden sm:block"
                 style={{
                   left: '50%',
-                  width: 'min(calc(100vw - 48px), 1015px)',
+                  width: 'min(calc(100vw - 48px), 940px)',
                   borderRadius: 18,
                   background: '#01141B',
                   border: '1px solid rgba(255,255,255,0.05)',
@@ -181,7 +181,7 @@ export default function InsightsSection() {
                   className="absolute top-0 bottom-0"
                   style={{
                     left: '50%',
-                    width: 'min(calc(100vw - 32px), 1015px)',
+                    width: 'min(calc(100vw - 32px), 940px)',
                     transition: 'transform 0.55s cubic-bezier(0.4,0,0.2,1), opacity 0.55s ease',
                     transform: isActive
                       ? 'translateX(-50%) scale(1)'
@@ -204,22 +204,43 @@ export default function InsightsSection() {
                       </div>
                     </div>
                     {/* Content */}
-                    <div className="flex flex-col gap-3 sm:gap-4 px-5 pb-5 pt-2 sm:p-8 flex-1 justify-center">
-                      <span className="text-[9px] tracking-[0.14em] uppercase" style={{ color: '#2490BB', fontFamily: "'Chivo Mono', monospace" }}>
+                    <div className="flex flex-col gap-5 sm:gap-7 px-8 pb-5 pt-2 sm:p-8 flex-1 justify-center items-start text-left mx-auto sm:mx-0 w-full">
+                      <span className="text-[13px] tracking-[0.14em] uppercase" style={{ color: '#2490BB', fontFamily: "'Archivo', sans-serif", fontWeight: 400 }}>
                         {s.tag}
                       </span>
-                      <h3 className="text-white font-semibold leading-snug" style={{ fontSize: 'clamp(17px, 2.5vw, 32px)', fontFamily: "'Sora', sans-serif" }}>
-                        {s.title}
+                      <h3 className="text-white font-semibold leading-snug" style={{ fontSize: 'clamp(17px, 2.5vw, 32px)', fontFamily: "'Archivo', sans-serif", fontWeight: 400 }}>
+                        {s.title.split('\n').map((line, i, arr) => (
+                          <span key={i}>{line}{i < arr.length - 1 && <br className="hidden sm:block" />}</span>
+                        ))}
                       </h3>
                       <div className="flex items-center gap-2">
-                        <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center" style={{ background: 'rgba(255,255,255,0.12)' }}>
-                          <span style={{ fontSize: 11 }}>⚡</span>
-                        </div>
-                        <span className="text-[12px] sm:text-[13px]" style={{ color: 'rgba(255,255,255,0.6)', fontFamily: "'Archivo', sans-serif" }}>{s.company}</span>
+                        {s.company === 'Zoomerr' ? (
+                          <div className="flex items-center gap-2">
+                            <img src="/zommer.svg" alt="Zoomerr" style={{ height: 22 }} />
+                            <span className="text-[15px] sm:text-[17px]" style={{ color: '#586E84', fontFamily: "'Archivo', sans-serif" }}>Zoomerr</span>
+                          </div>
+                        ) : s.company === 'Shells' ? (
+                          <div className="flex items-center gap-2">
+                            <img src="/shells.svg" alt="Shells" style={{ height: 22 }} />
+                            <span className="text-[12px] sm:text-[13px]" style={{ color: 'rgba(255,255,255,0.6)', fontFamily: "'Archivo', sans-serif" }}>Shells</span>
+                          </div>
+                        ) : s.company === 'SmartFinder' ? (
+                          <div className="flex items-center gap-2">
+                            <img src="/smart.svg" alt="SmartFinder" style={{ height: 22 }} />
+                            <span className="text-[12px] sm:text-[13px]" style={{ color: 'rgba(255,255,255,0.6)', fontFamily: "'Archivo', sans-serif" }}>SmartFinder</span>
+                          </div>
+                        ) : (
+                          <>
+                            <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center" style={{ background: 'rgba(255,255,255,0.12)' }}>
+                              <span style={{ fontSize: 11 }}>⚡</span>
+                            </div>
+                            <span className="text-[12px] sm:text-[13px]" style={{ color: 'rgba(255,255,255,0.6)', fontFamily: "'Archivo', sans-serif" }}>{s.company}</span>
+                          </>
+                        )}
                       </div>
                       <button
-                        className="w-full text-white text-[9px] tracking-[0.14em] uppercase py-2.5 sm:py-3 transition-all hover:bg-white/10 mt-1 sm:mt-2"
-                        style={{ border: '1px solid rgba(255,255,255,0.25)', borderRadius: 8, fontFamily: "'Chivo Mono', monospace" }}
+                        className="w-full text-white text-[9px] tracking-[0.14em] uppercase py-2.5 sm:py-3 transition-all hover:bg-white/10 hover:scale-105 active:scale-95 transform-gpu mt-1 sm:mt-2"
+                        style={{ border: '1px solid rgba(255,255,255,0.25)', borderRadius: 8, fontFamily: "'Chivo Mono', monospace", fontWeight: 400, color: '#E9F4F980' }}
                       >
                         Read More
                       </button>
@@ -232,16 +253,14 @@ export default function InsightsSection() {
         </div>
 
         {/* Navigation */}
-        <div className="flex items-center justify-between mt-5 sm:mt-6 px-4 sm:px-8 md:px-14 lg:px-20">
-          <div className="flex-1" />
+        <div className="flex flex-col items-center gap-3 mt-5 sm:mt-6">
           <div className="flex items-center gap-3 sm:gap-4">
             <button
               onClick={() => navigate((caseIdx - 1 + caseStudies.length) % caseStudies.length)}
-              className="w-10 h-10 sm:w-14 sm:h-14 rounded-full flex items-center justify-center transition-all hover:bg-[#00B4FD]/10"
+              className="w-9 h-9 sm:w-11 sm:h-11 rounded-full flex items-center justify-center transition-all hover:bg-[#00B4FD]/10"
               style={{ border: '1.5px solid #00B4FD' }}
             >
-              <img src="/arrow.svg" width="16" height="17" className="sm:hidden" alt="Previous" />
-              <img src="/arrow.svg" width="22" height="23" className="hidden sm:block" alt="Previous" />
+              <img src="/arrow.svg" width="18" height="18" alt="Previous" />
             </button>
             <div className="flex items-center gap-2">
               {caseStudies.map((_, i) => (
@@ -259,15 +278,15 @@ export default function InsightsSection() {
             </div>
             <button
               onClick={() => navigate((caseIdx + 1) % caseStudies.length)}
-              className="w-10 h-10 sm:w-14 sm:h-14 rounded-full flex items-center justify-center transition-all hover:bg-[#00B4FD]/10"
+              className="w-9 h-9 sm:w-11 sm:h-11 rounded-full flex items-center justify-center transition-all hover:bg-[#00B4FD]/10"
               style={{ border: '1.5px solid #00B4FD' }}
             >
-              <img src="/arrow.svg" width="16" height="17" className="sm:hidden" alt="Next" style={{ transform: 'rotate(180deg)' }} />
-              <img src="/arrow.svg" width="22" height="23" className="hidden sm:block" alt="Next" style={{ transform: 'rotate(180deg)' }} />
+              <img src="/arrow.svg" width="18" height="18" alt="Next" style={{ transform: 'rotate(180deg)' }} />
             </button>
           </div>
 
-          <div className="flex-1 flex justify-end">
+          {/* View All — aligned to card right edge */}
+          <div style={{ width: 'min(calc(100vw - 32px), 940px)' }} className="flex justify-end px-1">
             <button
               className="flex items-center gap-2 text-[10px] tracking-[0.14em] uppercase hover:opacity-70 transition-opacity"
               style={{ color: '#00B4FD', fontFamily: "'Chivo Mono', monospace" }}
